@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="Ja">
+<html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Tag: Grid Layout - Eastblue</title>
+<title>标签: Grid Layout - Eastblue</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/tags/Grid-Layout/index.html">
 <meta property="og:site_name" content="Eastblue">
 <meta property="og:description" content="The bridge between users and data">
-<meta property="og:locale" content="JavaScript">
+<meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Eastblue">
 <meta name="twitter:description" content="The bridge between users and data">
@@ -119,7 +119,7 @@
                 
                 
                 
-                <a class="navbar-item search" title="Search" href="javascript:;">
+                <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
                 </a>
                 
@@ -135,7 +135,7 @@
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/tags">Tags</a></li>
+            <li><a href="/tags">标签</a></li>
             <li class="is-active"><a href="#" aria-current="page">Grid Layout</a></li>
         </ul>
         </nav>
@@ -158,7 +158,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 659 words)
+                    4 分钟 读完 (大约 660 个字)
                 </span>
                 
                 
@@ -171,24 +171,17 @@
             
         </h1>
         <div class="content">
-            <p><img src="/2018/01/13/使用-CSS3-Grid-Layout-实现自适应布局/css-grid-layout-banner.gif" alt="实现效果"><br>CSS Grid Layout 是 CSS 中非常强大的布局系统，与 flexbox 很相似。但 flexbox 主要针对一维布局， grid layout 能够很好的作用于二维布局。<br>本文将使用 grid layout 的若干属性来创建一个自适应布局，体会一下在屏幕适配方面 grid layout 给我们带来的便携。<br>如果你还没有学习或接触过 gird layout ，可以先通过<a href="https://www.css88.com/archives/8506" target="_blank" rel="noopener">这篇文章</a>来学习一下。</p>
-<h2 id="1、HTML结构"><a href="#1、HTML结构" class="headerlink" title="1、HTML结构"></a>1、HTML结构</h2><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>Header<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"slider"</span>&gt;</span>Slider<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>Content<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span>Footer<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>最外围通过一个容器包裹，之后会通过 CSS 将它设置成一个网格容器。其中的子元素称为 网格项。<br>Grid Layout 有个尤为显著的特点：网格容器中的网格项排布，与实际 HTML 结构无关。flexbox 也拥有一样的特性，这种特性为自适应布局提供了很好的支持。</p>
-<h2 id="2、CSS设置"><a href="#2、CSS设置" class="headerlink" title="2、CSS设置"></a>2、CSS设置</h2><p>container 网格容器设置<br><figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.container</span> &#123;</span><br><span class="line">    <span class="hljs-attribute">display</span>: grid;</span><br><span class="line">    <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(12, 1fr);</span><br><span class="line">    <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-number">80px</span> <span class="hljs-number">500px</span> <span class="hljs-number">80px</span>;</span><br><span class="line">    <span class="hljs-attribute">grid-gap</span>: <span class="hljs-number">10px</span>;</span><br><span class="line">    <span class="hljs-attribute">grid-template-areas</span>:     </span><br><span class="line">    <span class="hljs-string">"h h h h h h h h h h h h"</span> </span><br><span class="line">    <span class="hljs-string">"s s s c c c c c c c c c"</span> </span><br><span class="line">    <span class="hljs-string">"f f f f f f f f f f f f"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>display 将 div 变成网格容器。</li>
-<li>grid-template-columns 和 grid-template-rows 指定了行列的排布， repeat函数的作用是将1fr 重复12次，即将列进行12等分。</li>
-<li>gird-gap 设置了网格项之间的间隙。</li>
-<li>grid-template-areas 是自适应布局的关键，首先将每个网格项命名，再将网格项的排布通过上面这种写法表示出来。</li>
-</ul>
-<p>网格项的设置<br><figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.container</span> <span class="hljs-selector-class">.header</span> &#123;</span><br><span class="line">    <span class="hljs-attribute">grid-area</span>: h;</span><br><span class="line">    <span class="hljs-attribute">background</span>: burlywood;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.container</span> <span class="hljs-selector-class">.footer</span> &#123;</span><br><span class="line">    <span class="hljs-attribute">grid-area</span>: f;</span><br><span class="line">    <span class="hljs-attribute">background</span>: aquamarine;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.container</span> <span class="hljs-selector-class">.slider</span> &#123;</span><br><span class="line">    <span class="hljs-attribute">grid-area</span>: s;</span><br><span class="line">    <span class="hljs-attribute">background</span>: rebeccapurple;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.container</span> <span class="hljs-selector-class">.content</span> &#123;</span><br><span class="line">    <span class="hljs-attribute">grid-area</span>: c;</span><br><span class="line">    <span class="hljs-attribute">background</span>: green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>grid-area 用来给每个网格项命名</li>
-</ul>
-<h2 id="3、屏幕自适应"><a href="#3、屏幕自适应" class="headerlink" title="3、屏幕自适应"></a>3、屏幕自适应</h2><p>grid-template-areas 是实现自适应布局的关键，网格项的布局是通过它来指定的，所以实现屏幕自适应的思路就是，通过 CSS3 媒体查询，在屏幕大小发生变化的时候来改编 grid-template-areas 的值。<br><figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@<span class="hljs-keyword">media</span> screen and (max-width: <span class="hljs-number">800px</span>) &#123;</span><br><span class="line">    <span class="hljs-selector-class">.container</span>&#123;</span><br><span class="line">        <span class="hljs-attribute">grid-template-areas</span>: </span><br><span class="line">        <span class="hljs-string">"h h h h h h s s s s s s"</span> </span><br><span class="line">        <span class="hljs-string">"c c c c c c c c c c c c"</span> </span><br><span class="line">        <span class="hljs-string">"f f f f f f f f f f f f"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="hljs-keyword">media</span> screen and (max-width:<span class="hljs-number">500px</span>) &#123;</span><br><span class="line">    <span class="hljs-selector-class">.slider</span>&#123;</span><br><span class="line">        <span class="hljs-attribute">display</span>: none;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-selector-class">.container</span>&#123;</span><br><span class="line">        <span class="hljs-attribute">grid-template-areas</span>: </span><br><span class="line">        <span class="hljs-string">"h h h h h h h h h h h h"</span> </span><br><span class="line">        <span class="hljs-string">"c c c c c c c c c c c c"</span> </span><br><span class="line">        <span class="hljs-string">"f f f f f f f f f f f f"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
+            <p><img src="/2018/01/13/使用-CSS3-Grid-Layout-实现自适应布局/css-grid-layout-banner.gif" alt="实现效果"><br>CSS Grid Layout 是 CSS 中非常强大的布局系统，与 flexbox 很相似。但 flexbox 主要针对一维布局， grid layout 能够很好的作用于二维布局。<br>本文将使用 grid layout 的若干属性来创建一个自适应布局，体会一下在屏幕适配方面 grid layout 给我们带来的便携。<br>如果你还没有学习或接触过 gird layout ，可以先通过<a href="https://www.css88.com/archives/8506" target="_blank" rel="noopener">这篇文章</a>来学习一下。<br></p>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2018/01/13/使用-CSS3-Grid-Layout-实现自适应布局/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -243,7 +236,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Posts
+                        文章
                     </p>
                     <p class="title has-text-weight-normal">
                         4
@@ -253,7 +246,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        分类
                     </p>
                     <p class="title has-text-weight-normal">
                         3
@@ -263,7 +256,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Tags
+                        标签
                     </p>
                     <p class="title has-text-weight-normal">
                         5
@@ -273,7 +266,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/EastblueOkay">
-                Follow</a>
+                关注我</a>
         </div>
         
         
@@ -304,7 +297,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Links
+            链接
         </h3>
         <ul class="menu-list">
         
@@ -353,7 +346,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categories
+                分类
             </h3>
             <ul class="menu-list">
             <li>
@@ -390,7 +383,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Tag Cloud
+            标签云
         </h3>
         <a href="/tags/Grid-Layout/" style="font-size: 10px;">Grid Layout</a> <a href="/tags/webpack-css/" style="font-size: 10px;">webpack css</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/生命周期/" style="font-size: 10px;">生命周期</a> <a href="/tags/网络请求/" style="font-size: 10px;">网络请求</a>
     </div>
@@ -404,7 +397,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            最新文章
         </h3>
         
         <article class="media">
@@ -491,14 +484,14 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            归档
         </h3>
         <ul class="menu-list">
         
         <li>
             <a class="level is-marginless" href="/archives/2019/02/">
                 <span class="level-start">
-                    <span class="level-item">February 2019</span>
+                    <span class="level-item">二月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -509,7 +502,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/05/">
                 <span class="level-start">
-                    <span class="level-item">May 2018</span>
+                    <span class="level-item">五月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -520,7 +513,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/04/">
                 <span class="level-start">
-                    <span class="level-item">April 2018</span>
+                    <span class="level-item">四月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -531,7 +524,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/01/">
                 <span class="level-start">
-                    <span class="level-item">January 2018</span>
+                    <span class="level-item">一月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -548,7 +541,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -607,7 +600,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            最新文章
         </h3>
         
         <article class="media">
@@ -694,14 +687,14 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            归档
         </h3>
         <ul class="menu-list">
         
         <li>
             <a class="level is-marginless" href="/archives/2019/02/">
                 <span class="level-start">
-                    <span class="level-item">February 2019</span>
+                    <span class="level-item">二月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -712,7 +705,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/05/">
                 <span class="level-start">
-                    <span class="level-item">May 2018</span>
+                    <span class="level-item">五月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -723,7 +716,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/04/">
                 <span class="level-start">
-                    <span class="level-item">April 2018</span>
+                    <span class="level-item">四月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -734,7 +727,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/01/">
                 <span class="level-start">
-                    <span class="level-item">January 2018</span>
+                    <span class="level-item">一月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -751,7 +744,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -845,7 +838,7 @@
 </footer>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
-<script>moment.locale("JavaScript");</script>
+<script>moment.locale("zh-CN");</script>
 
 
     
@@ -911,7 +904,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 
-<a id="back-to-top" title="Back to Top" href="javascript:;">
+<a id="back-to-top" title="回到顶端" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
@@ -945,7 +938,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -957,11 +950,11 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };

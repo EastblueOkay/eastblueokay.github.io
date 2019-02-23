@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="Ja">
+<html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Category: JavaScript - Eastblue</title>
+<title>分类: JavaScript - Eastblue</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/categories/JavaScript/index.html">
 <meta property="og:site_name" content="Eastblue">
 <meta property="og:description" content="The bridge between users and data">
-<meta property="og:locale" content="JavaScript">
+<meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Eastblue">
 <meta name="twitter:description" content="The bridge between users and data">
@@ -119,7 +119,7 @@
                 
                 
                 
-                <a class="navbar-item search" title="Search" href="javascript:;">
+                <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
                 </a>
                 
@@ -135,7 +135,7 @@
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/categories">Categories</a></li>
+            <li><a href="/categories">分类</a></li>
             
             <li class="is-active"><a href="#" aria-current="page">JavaScript</a></li>
         </ul>
@@ -159,7 +159,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 816 words)
+                    5 分钟 读完 (大约 817 个字)
                 </span>
                 
                 
@@ -172,21 +172,17 @@
             
         </h1>
         <div class="content">
-            <p>无论是JavaScript或其他编程语言，都会存在“作用域”的概念。它规定了代码对变量的访问权限以及如何查找变量。词法作用域分为静态作用域和动态作用域，JavaScript所采用的是静态词法作用域。</p>
-<h2 id="何为静态词法作用域？"><a href="#何为静态词法作用域？" class="headerlink" title="何为静态词法作用域？"></a>何为静态词法作用域？</h2><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> value = <span class="hljs-number">1</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test1</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">     <span class="hljs-built_in">console</span>.log(value)  <span class="hljs-comment">// 1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test2</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">var</span> value = <span class="hljs-number">2</span></span><br><span class="line">    test1(<span class="hljs-number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">test2()</span><br></pre></td></tr></table></figure>
-<p>test1函数实在test2函数的作用域中调用的，value已经在test2函数作用域中存在，但是test1任然输出了1，也就是全局作用于中的value值。</p>
-<p>这就是静态作用域最好的表示，在JS引擎对代码进行静态词法分析的时候，已经将每个变量的词法作用域确定下来了，且在动态运行的过程中不随着调用栈的变化而改变。反之动态词法作用域相信大家也能理解了。</p>
-<h2 id="欺骗词法作用域"><a href="#欺骗词法作用域" class="headerlink" title="欺骗词法作用域"></a>欺骗词法作用域</h2><p>JavaScript其实还能够在程序运行的过程中来修改词法作用域，但因为性能原因不建议使用。</p>
-<h4 id="1-eval"><a href="#1-eval" class="headerlink" title="1. eval"></a>1. eval</h4><p>eval函数可以接受一个字符串作为参数，并将其内容转换为代码存放于程序的相应位置。可想而知，这种动态生成的代码如果带有变量声明，那么程序的词法作用域环境也会发生相应的变化。<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> b = <span class="hljs-number">1</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">str</span>)</span>&#123;</span><br><span class="line">    <span class="hljs-built_in">eval</span>(str)</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(b)  <span class="hljs-comment">// 2</span></span><br><span class="line">&#125;</span><br><span class="line">foo(<span class="hljs-string">"var b = 2;"</span>)</span><br></pre></td></tr></table></figure></p>
-<p>在foo函数中，对str参数进行了执行，相当于当前行变成了 var b = 2，最终输出了2。这行代码执行后声明了一个b变量，对上层作用域的变量b进行了遮蔽。所以console.log执行时，只在foo的内部找到了b，无法找到外部的b。</p>
-<h4 id="2-with"><a href="#2-with" class="headerlink" title="2. with"></a>2. with</h4><p>with用来避免重复引用对象的快捷方式，例如：<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> obj = &#123;</span><br><span class="line">    a: <span class="hljs-number">1</span>,</span><br><span class="line">    b: <span class="hljs-number">2</span>,</span><br><span class="line">    c: <span class="hljs-number">3</span> </span><br><span class="line">&#125;</span><br><span class="line">obj.a / obj.a / obj.c <span class="hljs-comment">// 访问起来吃力</span></span><br><span class="line"><span class="hljs-keyword">with</span>(obj)&#123;</span><br><span class="line">    a= <span class="hljs-number">3</span>;</span><br><span class="line">    b= <span class="hljs-number">4</span>;</span><br><span class="line">    c= <span class="hljs-number">5</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如此，我们在操作对象的时候就可以省很多力，那么如何通过with来更改词法作用域？<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setData</span>(<span class="hljs-params">obj</span>)</span>&#123;</span><br><span class="line">     <span class="hljs-keyword">with</span>(obj)&#123;</span><br><span class="line">        a = <span class="hljs-number">10</span> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> o1 = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">3</span>&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> o2 = &#123; <span class="hljs-attr">b</span>: <span class="hljs-number">1</span>&#125;</span><br><span class="line">setData(o1)</span><br><span class="line"><span class="hljs-built_in">console</span>.log(o1.a) <span class="hljs-comment">// 10</span></span><br><span class="line">setData(o2)</span><br><span class="line"><span class="hljs-built_in">console</span>.log(o2.a) <span class="hljs-comment">// undifined</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(a) <span class="hljs-comment">// 10 发生泄漏</span></span><br></pre></td></tr></table></figure></p>
-<p>在with的作用域中，如果对obj没有的属性进行赋值，便会在全局作用域下生成新的变量（修改了词法作用域）。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>JavaScript是一种“解释型”语言，在到达浏览器之前不会进行编译和构建。所以它追求的是每一行能够尽快的编译执行完毕，不会对DOM造成阻塞。所以在编译的过程中要尽可能的优化代码， 减少运行时资源的消耗。</p>
-<p>而我们使用类似eval/with去欺骗（修改）了词法作用域，会让浏览器减少相应代码块的优化，因为即使做了静态词法作用域分析，也会在将来被这类操作修改，没有意义。</p>
-
+            <p>无论是JavaScript或其他编程语言，都会存在“作用域”的概念。它规定了代码对变量的访问权限以及如何查找变量。词法作用域分为静态作用域和动态作用域，JavaScript所采用的是静态词法作用域。<br></p>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2018/05/20/JavaScript的静态词法作用域/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -241,7 +237,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Posts
+                        文章
                     </p>
                     <p class="title has-text-weight-normal">
                         4
@@ -251,7 +247,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        分类
                     </p>
                     <p class="title has-text-weight-normal">
                         3
@@ -261,7 +257,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Tags
+                        标签
                     </p>
                     <p class="title has-text-weight-normal">
                         5
@@ -271,7 +267,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/EastblueOkay">
-                Follow</a>
+                关注我</a>
         </div>
         
         
@@ -302,7 +298,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Links
+            链接
         </h3>
         <ul class="menu-list">
         
@@ -351,7 +347,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categories
+                分类
             </h3>
             <ul class="menu-list">
             <li>
@@ -388,7 +384,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Tag Cloud
+            标签云
         </h3>
         <a href="/tags/Grid-Layout/" style="font-size: 10px;">Grid Layout</a> <a href="/tags/webpack-css/" style="font-size: 10px;">webpack css</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/生命周期/" style="font-size: 10px;">生命周期</a> <a href="/tags/网络请求/" style="font-size: 10px;">网络请求</a>
     </div>
@@ -402,7 +398,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            最新文章
         </h3>
         
         <article class="media">
@@ -489,14 +485,14 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            归档
         </h3>
         <ul class="menu-list">
         
         <li>
             <a class="level is-marginless" href="/archives/2019/02/">
                 <span class="level-start">
-                    <span class="level-item">February 2019</span>
+                    <span class="level-item">二月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -507,7 +503,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/05/">
                 <span class="level-start">
-                    <span class="level-item">May 2018</span>
+                    <span class="level-item">五月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -518,7 +514,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/04/">
                 <span class="level-start">
-                    <span class="level-item">April 2018</span>
+                    <span class="level-item">四月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -529,7 +525,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/01/">
                 <span class="level-start">
-                    <span class="level-item">January 2018</span>
+                    <span class="level-item">一月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -546,7 +542,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -605,7 +601,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            最新文章
         </h3>
         
         <article class="media">
@@ -692,14 +688,14 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            归档
         </h3>
         <ul class="menu-list">
         
         <li>
             <a class="level is-marginless" href="/archives/2019/02/">
                 <span class="level-start">
-                    <span class="level-item">February 2019</span>
+                    <span class="level-item">二月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -710,7 +706,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/05/">
                 <span class="level-start">
-                    <span class="level-item">May 2018</span>
+                    <span class="level-item">五月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -721,7 +717,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/04/">
                 <span class="level-start">
-                    <span class="level-item">April 2018</span>
+                    <span class="level-item">四月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -732,7 +728,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/01/">
                 <span class="level-start">
-                    <span class="level-item">January 2018</span>
+                    <span class="level-item">一月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -749,7 +745,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -843,7 +839,7 @@
 </footer>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
-<script>moment.locale("JavaScript");</script>
+<script>moment.locale("zh-CN");</script>
 
 
     
@@ -909,7 +905,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 
-<a id="back-to-top" title="Back to Top" href="javascript:;">
+<a id="back-to-top" title="回到顶端" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
@@ -943,7 +939,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -955,11 +951,11 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };

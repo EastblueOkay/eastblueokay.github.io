@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="Ja">
+<html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
 <title>Eastblue</title>
@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="Eastblue">
 <meta property="og:description" content="The bridge between users and data">
-<meta property="og:locale" content="JavaScript">
+<meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Eastblue">
 <meta name="twitter:description" content="The bridge between users and data">
@@ -119,7 +119,7 @@
                 
                 
                 
-                <a class="navbar-item search" title="Search" href="javascript:;">
+                <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
                 </a>
                 
@@ -148,7 +148,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 979 words)
+                    7 分钟 读完 (大约 980 个字)
                 </span>
                 
                 
@@ -163,27 +163,17 @@
         <div class="content">
             <p><code>React</code>无疑是目前最流行的前端View库之一。在业务开发中，开发者经常会因为网络请求时间点的选择而纠结，那么这篇文章一定会给你带来一些帮助。</p>
 <blockquote>
-<p>本文所提到的网络请求主要是组件初始化请求，不包括触发式请求（比如点赞请求、评论请求等）。  </p>
-</blockquote>
-<p>首先我们需要明确的是可进行网络请求的React类组件生命周期：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">constructor()</span><br><span class="line">componentWillMount()</span><br><span class="line">render()</span><br><span class="line">componentDidMount()</span><br></pre></td></tr></table></figure></p>
-<p>React在官方文档中提到，<code>componentDidMount</code>是比较适合进行网络请求的地方：<br><img src="/2019/02/23/React和Vue网络请求的时间点分析/componentDidMount.png" alt="componentDidMount"><br>大多数情况下，在didMount中进行网络请求确实比较稳妥，不太容易出现问题。但在实际开发中，可能会由于需求的不同而存在更多的请求节点选择。</p>
-<hr>
-<ul>
-<li><h4 id="同步网络请求"><a href="#同步网络请求" class="headerlink" title="同步网络请求"></a>同步网络请求</h4>同步的请求很少出现。这类请求最好在constructor和willMount阶段进行，因为同步请求会<code>阻塞React组件的渲染</code>及<code>浏览器事件</code>。<br>在组件渲染完毕，会调用didMount方法。如果在这个时间发送同步请求，务必会阻塞用户和页面的交互，造成页面假死的现象。<br>而在render之前，constructor和willMount均未渲染出页面，此时进行同步请求也只会使用户觉得组件或页面正在加载中。<br><br></li>
-<li><h4 id="异步网络请求"><a href="#异步网络请求" class="headerlink" title="异步网络请求"></a>异步网络请求</h4>异步网络请求是在开发中最常见的，它并不会阻塞组件的渲染。将这类请求放在constructor和willMount中<code>效率会更高</code>。<br>异步请求在取得response后通常会使用setState来触发render。didMount调用时实际上已经render过一次，如果在didMount中请求数据，<code>至少会经历两次render</code>（假设请求成功）。<br>setState实际上是将更新的状态放进了组件的__pendingStateQueue<code>队列</code>。<br>速度足够快的情况下，在constructor和willMount中的请求能够在第一次render前进行setState，此时setState并不会触发渲染，而是会在组件进行第一次render的时候统一渲染，实际只进行了<code>一次render</code>。<br>如果没有在第一次render前获取到response，最多也只会和didMount中请求一样的效果，进行两次渲染。<br>综上，将异步请求放在constructor和willMount中会显得更加的高效。<blockquote>
-<p>在construcor中发出的异步请求（microTask）如果足够快，会在组件没有mounted前调用setState，这个时候是不成功的，必须直接使用this.state = {} 的形式设置state，这需要增加额外的判断。</p>
-</blockquote>
-</li>
-</ul>
-<p><br></p>
-<ul>
-<li><h4 id="不涉及UI渲染的网络请求"><a href="#不涉及UI渲染的网络请求" class="headerlink" title="不涉及UI渲染的网络请求"></a>不涉及UI渲染的网络请求</h4>我们一般不依赖这类请求的response，只需要强调请求的发送。所以比较适合在constructor阶段完成。<br><br></li>
-<li><h4 id="SSR（服务端渲染）"><a href="#SSR（服务端渲染）" class="headerlink" title="SSR（服务端渲染）"></a>SSR（服务端渲染）</h4>如果网站考虑SSR的话，那么网络请求要尽可能的放到didMount中，因为didMount在SSR的过程中并<code>不会被执行</code>，且SSR生成HTML的过程中也不需要执行网络请求（没有意义）。<br><br></li>
-<li><h4 id="Fiber-reconciler"><a href="#Fiber-reconciler" class="headerlink" title="Fiber reconciler"></a>Fiber reconciler</h4>Fiber是React16所采用的协调算法，可以通过<a href="http://www.ayqy.net/blog/dive-into-react-fiber/" target="_blank" rel="noopener">这篇文章</a>深入了解。<br>使用Fiber后，组件render前的生命周期方法可能会被打断，也就意味这这些方法可能会被<code>多次执行</code>。因此，在React16后，初始网络请求都要尽量在<code>didMount</code>中执行。</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><center><img src="/2019/02/23/React和Vue网络请求的时间点分析/decision.jpg" alt="React网络请求时间点的选择"></center>
+<p>本文所提到的网络请求主要是组件初始化请求，不包括触发式请求（比如点赞请求、评论请求等）。<br></p></blockquote>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/02/23/React和Vue网络请求的时间点分析/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -212,7 +202,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 816 words)
+                    5 分钟 读完 (大约 817 个字)
                 </span>
                 
                 
@@ -225,21 +215,17 @@
             
         </h1>
         <div class="content">
-            <p>无论是JavaScript或其他编程语言，都会存在“作用域”的概念。它规定了代码对变量的访问权限以及如何查找变量。词法作用域分为静态作用域和动态作用域，JavaScript所采用的是静态词法作用域。</p>
-<h2 id="何为静态词法作用域？"><a href="#何为静态词法作用域？" class="headerlink" title="何为静态词法作用域？"></a>何为静态词法作用域？</h2><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> value = <span class="hljs-number">1</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test1</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">     <span class="hljs-built_in">console</span>.log(value)  <span class="hljs-comment">// 1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test2</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">var</span> value = <span class="hljs-number">2</span></span><br><span class="line">    test1(<span class="hljs-number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">test2()</span><br></pre></td></tr></table></figure>
-<p>test1函数实在test2函数的作用域中调用的，value已经在test2函数作用域中存在，但是test1任然输出了1，也就是全局作用于中的value值。</p>
-<p>这就是静态作用域最好的表示，在JS引擎对代码进行静态词法分析的时候，已经将每个变量的词法作用域确定下来了，且在动态运行的过程中不随着调用栈的变化而改变。反之动态词法作用域相信大家也能理解了。</p>
-<h2 id="欺骗词法作用域"><a href="#欺骗词法作用域" class="headerlink" title="欺骗词法作用域"></a>欺骗词法作用域</h2><p>JavaScript其实还能够在程序运行的过程中来修改词法作用域，但因为性能原因不建议使用。</p>
-<h4 id="1-eval"><a href="#1-eval" class="headerlink" title="1. eval"></a>1. eval</h4><p>eval函数可以接受一个字符串作为参数，并将其内容转换为代码存放于程序的相应位置。可想而知，这种动态生成的代码如果带有变量声明，那么程序的词法作用域环境也会发生相应的变化。<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> b = <span class="hljs-number">1</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">str</span>)</span>&#123;</span><br><span class="line">    <span class="hljs-built_in">eval</span>(str)</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(b)  <span class="hljs-comment">// 2</span></span><br><span class="line">&#125;</span><br><span class="line">foo(<span class="hljs-string">"var b = 2;"</span>)</span><br></pre></td></tr></table></figure></p>
-<p>在foo函数中，对str参数进行了执行，相当于当前行变成了 var b = 2，最终输出了2。这行代码执行后声明了一个b变量，对上层作用域的变量b进行了遮蔽。所以console.log执行时，只在foo的内部找到了b，无法找到外部的b。</p>
-<h4 id="2-with"><a href="#2-with" class="headerlink" title="2. with"></a>2. with</h4><p>with用来避免重复引用对象的快捷方式，例如：<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> obj = &#123;</span><br><span class="line">    a: <span class="hljs-number">1</span>,</span><br><span class="line">    b: <span class="hljs-number">2</span>,</span><br><span class="line">    c: <span class="hljs-number">3</span> </span><br><span class="line">&#125;</span><br><span class="line">obj.a / obj.a / obj.c <span class="hljs-comment">// 访问起来吃力</span></span><br><span class="line"><span class="hljs-keyword">with</span>(obj)&#123;</span><br><span class="line">    a= <span class="hljs-number">3</span>;</span><br><span class="line">    b= <span class="hljs-number">4</span>;</span><br><span class="line">    c= <span class="hljs-number">5</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如此，我们在操作对象的时候就可以省很多力，那么如何通过with来更改词法作用域？<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setData</span>(<span class="hljs-params">obj</span>)</span>&#123;</span><br><span class="line">     <span class="hljs-keyword">with</span>(obj)&#123;</span><br><span class="line">        a = <span class="hljs-number">10</span> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> o1 = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">3</span>&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> o2 = &#123; <span class="hljs-attr">b</span>: <span class="hljs-number">1</span>&#125;</span><br><span class="line">setData(o1)</span><br><span class="line"><span class="hljs-built_in">console</span>.log(o1.a) <span class="hljs-comment">// 10</span></span><br><span class="line">setData(o2)</span><br><span class="line"><span class="hljs-built_in">console</span>.log(o2.a) <span class="hljs-comment">// undifined</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(a) <span class="hljs-comment">// 10 发生泄漏</span></span><br></pre></td></tr></table></figure></p>
-<p>在with的作用域中，如果对obj没有的属性进行赋值，便会在全局作用域下生成新的变量（修改了词法作用域）。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>JavaScript是一种“解释型”语言，在到达浏览器之前不会进行编译和构建。所以它追求的是每一行能够尽快的编译执行完毕，不会对DOM造成阻塞。所以在编译的过程中要尽可能的优化代码， 减少运行时资源的消耗。</p>
-<p>而我们使用类似eval/with去欺骗（修改）了词法作用域，会让浏览器减少相应代码块的优化，因为即使做了静态词法作用域分析，也会在将来被这类操作修改，没有意义。</p>
-
+            <p>无论是JavaScript或其他编程语言，都会存在“作用域”的概念。它规定了代码对变量的访问权限以及如何查找变量。词法作用域分为静态作用域和动态作用域，JavaScript所采用的是静态词法作用域。<br></p>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2018/05/20/JavaScript的静态词法作用域/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -268,7 +254,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 227 words)
+                    2 分钟 读完 (大约 227 个字)
                 </span>
                 
                 
@@ -317,7 +303,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 659 words)
+                    4 分钟 读完 (大约 660 个字)
                 </span>
                 
                 
@@ -330,24 +316,17 @@
             
         </h1>
         <div class="content">
-            <p><img src="/2018/01/13/使用-CSS3-Grid-Layout-实现自适应布局/css-grid-layout-banner.gif" alt="实现效果"><br>CSS Grid Layout 是 CSS 中非常强大的布局系统，与 flexbox 很相似。但 flexbox 主要针对一维布局， grid layout 能够很好的作用于二维布局。<br>本文将使用 grid layout 的若干属性来创建一个自适应布局，体会一下在屏幕适配方面 grid layout 给我们带来的便携。<br>如果你还没有学习或接触过 gird layout ，可以先通过<a href="https://www.css88.com/archives/8506" target="_blank" rel="noopener">这篇文章</a>来学习一下。</p>
-<h2 id="1、HTML结构"><a href="#1、HTML结构" class="headerlink" title="1、HTML结构"></a>1、HTML结构</h2><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span>Header<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"slider"</span>&gt;</span>Slider<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>Content<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span>Footer<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>最外围通过一个容器包裹，之后会通过 CSS 将它设置成一个网格容器。其中的子元素称为 网格项。<br>Grid Layout 有个尤为显著的特点：网格容器中的网格项排布，与实际 HTML 结构无关。flexbox 也拥有一样的特性，这种特性为自适应布局提供了很好的支持。</p>
-<h2 id="2、CSS设置"><a href="#2、CSS设置" class="headerlink" title="2、CSS设置"></a>2、CSS设置</h2><p>container 网格容器设置<br><figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.container</span> &#123;</span><br><span class="line">    <span class="hljs-attribute">display</span>: grid;</span><br><span class="line">    <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(12, 1fr);</span><br><span class="line">    <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-number">80px</span> <span class="hljs-number">500px</span> <span class="hljs-number">80px</span>;</span><br><span class="line">    <span class="hljs-attribute">grid-gap</span>: <span class="hljs-number">10px</span>;</span><br><span class="line">    <span class="hljs-attribute">grid-template-areas</span>:     </span><br><span class="line">    <span class="hljs-string">"h h h h h h h h h h h h"</span> </span><br><span class="line">    <span class="hljs-string">"s s s c c c c c c c c c"</span> </span><br><span class="line">    <span class="hljs-string">"f f f f f f f f f f f f"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>display 将 div 变成网格容器。</li>
-<li>grid-template-columns 和 grid-template-rows 指定了行列的排布， repeat函数的作用是将1fr 重复12次，即将列进行12等分。</li>
-<li>gird-gap 设置了网格项之间的间隙。</li>
-<li>grid-template-areas 是自适应布局的关键，首先将每个网格项命名，再将网格项的排布通过上面这种写法表示出来。</li>
-</ul>
-<p>网格项的设置<br><figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-selector-class">.container</span> <span class="hljs-selector-class">.header</span> &#123;</span><br><span class="line">    <span class="hljs-attribute">grid-area</span>: h;</span><br><span class="line">    <span class="hljs-attribute">background</span>: burlywood;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.container</span> <span class="hljs-selector-class">.footer</span> &#123;</span><br><span class="line">    <span class="hljs-attribute">grid-area</span>: f;</span><br><span class="line">    <span class="hljs-attribute">background</span>: aquamarine;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.container</span> <span class="hljs-selector-class">.slider</span> &#123;</span><br><span class="line">    <span class="hljs-attribute">grid-area</span>: s;</span><br><span class="line">    <span class="hljs-attribute">background</span>: rebeccapurple;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-selector-class">.container</span> <span class="hljs-selector-class">.content</span> &#123;</span><br><span class="line">    <span class="hljs-attribute">grid-area</span>: c;</span><br><span class="line">    <span class="hljs-attribute">background</span>: green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>grid-area 用来给每个网格项命名</li>
-</ul>
-<h2 id="3、屏幕自适应"><a href="#3、屏幕自适应" class="headerlink" title="3、屏幕自适应"></a>3、屏幕自适应</h2><p>grid-template-areas 是实现自适应布局的关键，网格项的布局是通过它来指定的，所以实现屏幕自适应的思路就是，通过 CSS3 媒体查询，在屏幕大小发生变化的时候来改编 grid-template-areas 的值。<br><figure class="highlight css hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@<span class="hljs-keyword">media</span> screen and (max-width: <span class="hljs-number">800px</span>) &#123;</span><br><span class="line">    <span class="hljs-selector-class">.container</span>&#123;</span><br><span class="line">        <span class="hljs-attribute">grid-template-areas</span>: </span><br><span class="line">        <span class="hljs-string">"h h h h h h s s s s s s"</span> </span><br><span class="line">        <span class="hljs-string">"c c c c c c c c c c c c"</span> </span><br><span class="line">        <span class="hljs-string">"f f f f f f f f f f f f"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="hljs-keyword">media</span> screen and (max-width:<span class="hljs-number">500px</span>) &#123;</span><br><span class="line">    <span class="hljs-selector-class">.slider</span>&#123;</span><br><span class="line">        <span class="hljs-attribute">display</span>: none;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-selector-class">.container</span>&#123;</span><br><span class="line">        <span class="hljs-attribute">grid-template-areas</span>: </span><br><span class="line">        <span class="hljs-string">"h h h h h h h h h h h h"</span> </span><br><span class="line">        <span class="hljs-string">"c c c c c c c c c c c c"</span> </span><br><span class="line">        <span class="hljs-string">"f f f f f f f f f f f f"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
+            <p><img src="/2018/01/13/使用-CSS3-Grid-Layout-实现自适应布局/css-grid-layout-banner.gif" alt="实现效果"><br>CSS Grid Layout 是 CSS 中非常强大的布局系统，与 flexbox 很相似。但 flexbox 主要针对一维布局， grid layout 能够很好的作用于二维布局。<br>本文将使用 grid layout 的若干属性来创建一个自适应布局，体会一下在屏幕适配方面 grid layout 给我们带来的便携。<br>如果你还没有学习或接触过 gird layout ，可以先通过<a href="https://www.css88.com/archives/8506" target="_blank" rel="noopener">这篇文章</a>来学习一下。<br></p>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2018/01/13/使用-CSS3-Grid-Layout-实现自适应布局/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -402,7 +381,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Posts
+                        文章
                     </p>
                     <p class="title has-text-weight-normal">
                         4
@@ -412,7 +391,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        分类
                     </p>
                     <p class="title has-text-weight-normal">
                         3
@@ -422,7 +401,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Tags
+                        标签
                     </p>
                     <p class="title has-text-weight-normal">
                         5
@@ -432,7 +411,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/EastblueOkay">
-                Follow</a>
+                关注我</a>
         </div>
         
         
@@ -463,7 +442,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Links
+            链接
         </h3>
         <ul class="menu-list">
         
@@ -512,7 +491,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categories
+                分类
             </h3>
             <ul class="menu-list">
             <li>
@@ -549,7 +528,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Tag Cloud
+            标签云
         </h3>
         <a href="/tags/Grid-Layout/" style="font-size: 10px;">Grid Layout</a> <a href="/tags/webpack-css/" style="font-size: 10px;">webpack css</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/生命周期/" style="font-size: 10px;">生命周期</a> <a href="/tags/网络请求/" style="font-size: 10px;">网络请求</a>
     </div>
@@ -563,7 +542,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            最新文章
         </h3>
         
         <article class="media">
@@ -650,14 +629,14 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            归档
         </h3>
         <ul class="menu-list">
         
         <li>
             <a class="level is-marginless" href="/archives/2019/02/">
                 <span class="level-start">
-                    <span class="level-item">February 2019</span>
+                    <span class="level-item">二月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -668,7 +647,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/05/">
                 <span class="level-start">
-                    <span class="level-item">May 2018</span>
+                    <span class="level-item">五月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -679,7 +658,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/04/">
                 <span class="level-start">
-                    <span class="level-item">April 2018</span>
+                    <span class="level-item">四月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -690,7 +669,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/01/">
                 <span class="level-start">
-                    <span class="level-item">January 2018</span>
+                    <span class="level-item">一月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -707,7 +686,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -766,7 +745,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recent
+            最新文章
         </h3>
         
         <article class="media">
@@ -853,14 +832,14 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archives
+            归档
         </h3>
         <ul class="menu-list">
         
         <li>
             <a class="level is-marginless" href="/archives/2019/02/">
                 <span class="level-start">
-                    <span class="level-item">February 2019</span>
+                    <span class="level-item">二月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -871,7 +850,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/05/">
                 <span class="level-start">
-                    <span class="level-item">May 2018</span>
+                    <span class="level-item">五月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -882,7 +861,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/04/">
                 <span class="level-start">
-                    <span class="level-item">April 2018</span>
+                    <span class="level-item">四月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -893,7 +872,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/01/">
                 <span class="level-start">
-                    <span class="level-item">January 2018</span>
+                    <span class="level-item">一月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -910,7 +889,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tags
+                标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -1004,7 +983,7 @@
 </footer>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
-<script>moment.locale("JavaScript");</script>
+<script>moment.locale("zh-CN");</script>
 
 
     
@@ -1070,7 +1049,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 
-<a id="back-to-top" title="Back to Top" href="javascript:;">
+<a id="back-to-top" title="回到顶端" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
@@ -1104,7 +1083,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -1116,11 +1095,11 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };
