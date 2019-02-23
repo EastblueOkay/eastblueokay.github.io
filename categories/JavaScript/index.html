@@ -2,16 +2,15 @@
 <html lang="Ja">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Categories - Eastblue</title>
+<title>Category: JavaScript - Eastblue</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
     <meta name="description" content="The bridge between users and data">
-<meta name="keywords" content="生命周期,网络请求,作用域">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Eastblue">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:url" content="http://yoursite.com/categories/JavaScript/index.html">
 <meta property="og:site_name" content="Eastblue">
 <meta property="og:description" content="The bridge between users and data">
 <meta property="og:locale" content="JavaScript">
@@ -101,7 +100,7 @@
                 
                 <a class="navbar-item" href="/archives">Archives</a>
                 
-                <a class="navbar-item is-active" href="/categories">Categories</a>
+                <a class="navbar-item" href="/categories">Categories</a>
                 
                 <a class="navbar-item" href="/tags">Tags</a>
                 
@@ -134,35 +133,75 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-<div class="card widget">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                Categories
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/JavaScript/">
-            <span class="level-start">
-                <span class="level-item">JavaScript</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/React/">
-            <span class="level-start">
-                <span class="level-item">React</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li>
-            </ul>
-        </div>
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">Categories</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">JavaScript</a></li>
+        </ul>
+        </nav>
     </div>
-</div></div>
+</div>
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-05-20T06:31:57.000Z">2018-05-20</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/JavaScript/">JavaScript</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 minutes read (About 816 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/05/20/JavaScript的静态词法作用域/">JavaScript的静态词法作用域</a>
+            
+        </h1>
+        <div class="content">
+            <p>无论是JavaScript或其他编程语言，都会存在“作用域”的概念。它规定了代码对变量的访问权限以及如何查找变量。词法作用域分为静态作用域和动态作用域，JavaScript所采用的是静态词法作用域。</p>
+<h2 id="何为静态词法作用域？"><a href="#何为静态词法作用域？" class="headerlink" title="何为静态词法作用域？"></a>何为静态词法作用域？</h2><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> value = <span class="hljs-number">1</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test1</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="line">     <span class="hljs-built_in">console</span>.log(value)  <span class="hljs-comment">// 1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test2</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">    <span class="hljs-keyword">var</span> value = <span class="hljs-number">2</span></span><br><span class="line">    test1(<span class="hljs-number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">test2()</span><br></pre></td></tr></table></figure>
+<p>test1函数实在test2函数的作用域中调用的，value已经在test2函数作用域中存在，但是test1任然输出了1，也就是全局作用于中的value值。</p>
+<p>这就是静态作用域最好的表示，在JS引擎对代码进行静态词法分析的时候，已经将每个变量的词法作用域确定下来了，且在动态运行的过程中不随着调用栈的变化而改变。反之动态词法作用域相信大家也能理解了。</p>
+<h2 id="欺骗词法作用域"><a href="#欺骗词法作用域" class="headerlink" title="欺骗词法作用域"></a>欺骗词法作用域</h2><p>JavaScript其实还能够在程序运行的过程中来修改词法作用域，但因为性能原因不建议使用。</p>
+<h4 id="1-eval"><a href="#1-eval" class="headerlink" title="1. eval"></a>1. eval</h4><p>eval函数可以接受一个字符串作为参数，并将其内容转换为代码存放于程序的相应位置。可想而知，这种动态生成的代码如果带有变量声明，那么程序的词法作用域环境也会发生相应的变化。<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> b = <span class="hljs-number">1</span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">str</span>)</span>&#123;</span><br><span class="line">    <span class="hljs-built_in">eval</span>(str)</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(b)  <span class="hljs-comment">// 2</span></span><br><span class="line">&#125;</span><br><span class="line">foo(<span class="hljs-string">"var b = 2;"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>在foo函数中，对str参数进行了执行，相当于当前行变成了 var b = 2，最终输出了2。这行代码执行后声明了一个b变量，对上层作用域的变量b进行了遮蔽。所以console.log执行时，只在foo的内部找到了b，无法找到外部的b。</p>
+<h4 id="2-with"><a href="#2-with" class="headerlink" title="2. with"></a>2. with</h4><p>with用来避免重复引用对象的快捷方式，例如：<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">let</span> obj = &#123;</span><br><span class="line">    a: <span class="hljs-number">1</span>,</span><br><span class="line">    b: <span class="hljs-number">2</span>,</span><br><span class="line">    c: <span class="hljs-number">3</span> </span><br><span class="line">&#125;</span><br><span class="line">obj.a / obj.a / obj.c <span class="hljs-comment">// 访问起来吃力</span></span><br><span class="line"><span class="hljs-keyword">with</span>(obj)&#123;</span><br><span class="line">    a= <span class="hljs-number">3</span>;</span><br><span class="line">    b= <span class="hljs-number">4</span>;</span><br><span class="line">    c= <span class="hljs-number">5</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如此，我们在操作对象的时候就可以省很多力，那么如何通过with来更改词法作用域？<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setData</span>(<span class="hljs-params">obj</span>)</span>&#123;</span><br><span class="line">     <span class="hljs-keyword">with</span>(obj)&#123;</span><br><span class="line">        a = <span class="hljs-number">10</span> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> o1 = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">3</span>&#125;</span><br><span class="line"><span class="hljs-keyword">var</span> o2 = &#123; <span class="hljs-attr">b</span>: <span class="hljs-number">1</span>&#125;</span><br><span class="line">setData(o1)</span><br><span class="line"><span class="hljs-built_in">console</span>.log(o1.a) <span class="hljs-comment">// 10</span></span><br><span class="line">setData(o2)</span><br><span class="line"><span class="hljs-built_in">console</span>.log(o2.a) <span class="hljs-comment">// undifined</span></span><br><span class="line"><span class="hljs-built_in">console</span>.log(a) <span class="hljs-comment">// 10 发生泄漏</span></span><br></pre></td></tr></table></figure></p>
+<p>在with的作用域中，如果对obj没有的属性进行赋值，便会在全局作用域下生成新的变量（修改了词法作用域）。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>JavaScript是一种“解释型”语言，在到达浏览器之前不会进行编译和构建。所以它追求的是每一行能够尽快的编译执行完毕，不会对DOM造成阻塞。所以在编译的过程中要尽可能的优化代码， 减少运行时资源的消耗。</p>
+<p>而我们使用类似eval/with去欺骗（修改）了词法作用域，会让浏览器减少相应代码块的优化，因为即使做了静态词法作用域分析，也会在将来被这类操作修改，没有意义。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</div>
                 
 
 
