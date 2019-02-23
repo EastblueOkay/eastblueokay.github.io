@@ -2,16 +2,15 @@
 <html lang="Ja">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Categories - Eastblue</title>
+<title>Category: CSS - Eastblue</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
     <meta name="description" content="The bridge between users and data">
-<meta name="keywords" content="Grid Layout,生命周期,网络请求,作用域,webpack css">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Eastblue">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta property="og:url" content="http://yoursite.com/categories/CSS/index.html">
 <meta property="og:site_name" content="Eastblue">
 <meta property="og:description" content="The bridge between users and data">
 <meta property="og:locale" content="JavaScript">
@@ -101,7 +100,7 @@
                 
                 <a class="navbar-item" href="/archives">Archives</a>
                 
-                <a class="navbar-item is-active" href="/categories">Categories</a>
+                <a class="navbar-item" href="/categories">Categories</a>
                 
                 <a class="navbar-item" href="/tags">Tags</a>
                 
@@ -132,43 +131,68 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-<div class="card widget">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                Categories
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/CSS/">
-            <span class="level-start">
-                <span class="level-item">CSS</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/JavaScript/">
-            <span class="level-start">
-                <span class="level-item">JavaScript</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/React/">
-            <span class="level-start">
-                <span class="level-item">React</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li>
-            </ul>
-        </div>
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">Categories</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">CSS</a></li>
+        </ul>
+        </nav>
     </div>
-</div></div>
+</div>
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-04-23T10:20:36.000Z">2018-04-23</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/CSS/">CSS</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 227 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/04/23/CSS预处理器中使用Webpack-alias配置/">CSS预处理器中使用Webpack alias配置</a>
+            
+        </h1>
+        <div class="content">
+            <p>在使用 webpack 构建项目时，经常会使用到 resolve.alias 的功能。它可以用来创建 import 或 require 的别名，使得模块引入变得更简单。<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alias: &#123;</span><br><span class="line">    <span class="hljs-string">'@'</span>: <span class="hljs-string">'src/components'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在，可以替换替换原有的导入路径方式：<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// before</span></span><br><span class="line"><span class="hljs-keyword">import</span> component <span class="hljs-keyword">from</span> <span class="hljs-string">"src/components/component"</span></span><br><span class="line"><span class="hljs-comment">// after</span></span><br><span class="line"><span class="hljs-keyword">import</span> component <span class="hljs-keyword">from</span> <span class="hljs-string">"@/component"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="在CSS预处理器的-import中使用alias"><a href="#在CSS预处理器的-import中使用alias" class="headerlink" title="在CSS预处理器的@import中使用alias"></a>在CSS预处理器的@import中使用alias</h2><p>@import存在于 css 中，而 css 是由 css-loader 来进行处理的，所以在处理过程中并不能使用 webpack loader 的 alias 配置。下面的引入将不会生效：<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="hljs-keyword">import</span> <span class="hljs-string">"@/reset.css"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="使用-标识符"><a href="#使用-标识符" class="headerlink" title="使用 ~ 标识符"></a>使用 ~ 标识符</h2><p>想要在 css 中使用 alias，可以采用如下解决方案：<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="hljs-keyword">import</span> <span class="hljs-string">"~@/reset.css"</span></span><br></pre></td></tr></table></figure></p>
+<p>~的作用是告诉 webpack，当前 import 的路径是使用 alias 配置进行导入。<br>可以点击<a href="https://github.com/webpack-contrib/css-loader/issues/49" target="_blank" rel="noopener">这里</a>查看该css-loader Issues详情</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</div>
                 
 
 
