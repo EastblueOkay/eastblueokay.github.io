@@ -2,7 +2,7 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>归档 - Eastblue</title>
+<title>标签: jest - Eastblue</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -10,7 +10,7 @@
     <meta name="description" content="The bridge between users and data">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Eastblue">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/jest/index.html">
 <meta property="og:site_name" content="Eastblue">
 <meta property="og:description" content="The bridge between users and data">
 <meta property="og:locale" content="zh-CN">
@@ -133,96 +133,64 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-        
-<div class="card widget">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     <div class="card-content">
-        <h3 class="tag is-link">
-        2018
-        </h3>
-        <div class="timeline">
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2018-01-13T01:13:00.000Z">2018-01-13</time>
-                        <a href="/2018/01/13/使用-CSS3-Grid-Layout-实现自适应布局/" class="has-link-black-ter is-size-6">使用 CSS3 Grid Layout 实现自适应布局</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/CSS/">CSS</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-        </div>
-    </div>
-</div>
-
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="tag is-link">
-        2017
-        </h3>
-        <div class="timeline">
-        
-            <article class="media">
-                
-                <a href="/2017/12/02/JavaScript中的-var、let、const/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="/gallery/thumbnails/javascript-var-let-const-banner.jpeg" alt="JavaScript中的 var、let、const">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2017-12-02T14:19:23.000Z">2017-12-02</time>
-                        <a href="/2017/12/02/JavaScript中的-var、let、const/" class="has-link-black-ter is-size-6">JavaScript中的 var、let、const</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/JavaScript/">JavaScript</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-        </div>
-    </div>
-</div>
-
-    
-
-    
-<div class="card card-transparent">
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <div class="pagination-previous">
-            <a class="is-flex-grow has-text-black-ter" href="/archives/">上一页</a>
-        </div>
-        <div class="pagination-next is-invisible is-hidden-mobile">
-            <a class="is-flex-grow has-text-black-ter" href="/archives/page/3/">下一页</a>
-        </div>
-        <ul class="pagination-list is-hidden-mobile">
-            
-            <li><a class="pagination-link has-text-black-ter" href="/archives/">1</a></li>
-            
-            <li><a class="pagination-link is-current" href="/archives/page/2/">2</a></li>
-            
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">jest</a></li>
         </ul>
-    </nav>
+        </nav>
+    </div>
 </div>
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-02-24T13:26:32.000Z">2019-02-24</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/单元测试/">单元测试</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 224 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/02/24/enzyme模拟checkbox选中与取消/">enzyme模拟checkbox选中与取消</a>
+            
+        </h1>
+        <div class="content">
+            <p>在涉及到checkbox表单元素的单测时，我们会直观的模拟input元素的<code>click</code>事件以触发元素值的改变。但在使用enzyme进行组件单测时却<code>行不通</code>。</p>
+<h2 id="正确的做法"><a href="#正确的做法" class="headerlink" title="正确的做法"></a>正确的做法</h2><p>正确的做法是模拟input元素的change事件，传递想要的target.value。<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></span><br><span class="line"><span class="hljs-keyword">import</span> &#123; mount &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'enzyme'</span></span><br><span class="line"></span><br><span class="line">it(<span class="hljs-string">'should change checkbox value'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="hljs-keyword">const</span> changeFn = <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(e.target.checked)</span><br><span class="line">  <span class="hljs-keyword">const</span> wrapper = mount(&lt;input type="checkbox" onChange=&#123;changeFn&#125; /&gt;)</span><br><span class="line">  wrapper.find('input').simulate('click', &#123;</span><br><span class="line">    target: &#123;</span><br><span class="line">      value: true,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="为什么？"><a href="#为什么？" class="headerlink" title="为什么？"></a>为什么？</h2><p>enzyme的<code>事件模拟系统</code>并不是我们所想象的那样，操作真实的dom来触发dom级事件。而是简单的将simulate<code>转发</code>到props上的相应func。<br>所以在测试过程中如果我们需要为组件<code>模拟相应的事件</code>，只需要关注组件props上<code>onEventName</code>中的<code>EventName</code>。就像以下情况：<br><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">onBlur</span>=<span class="hljs-string">&#123;handleBlur&#125;</span> /&gt;</span> // simulate('blur')</span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">contentEditable</span> <span class="hljs-attr">onInput</span>=<span class="hljs-string">&#123;handleInput&#125;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> // simulate('input')</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
 </div>
                 
 
