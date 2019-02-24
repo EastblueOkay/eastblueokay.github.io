@@ -2,26 +2,21 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>React网络请求的时间点分析 - Eastblue</title>
+<title>标签: less - Eastblue</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="React无疑是目前最流行的前端View库之一。在业务开发中，开发者经常会因为网络请求时间点的选择而纠结，那么这篇文章一定会给你带来一些帮助。  本文所提到的网络请求主要是组件初始化请求，不包括触发式请求（比如点赞请求、评论请求等）。">
-<meta name="keywords" content="生命周期,网络请求">
-<meta property="og:type" content="article">
-<meta property="og:title" content="React网络请求的时间点分析">
-<meta property="og:url" content="http://yoursite.com/2019/02/23/React和Vue网络请求的时间点分析/index.html">
+    <meta name="description" content="The bridge between users and data">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Eastblue">
+<meta property="og:url" content="http://yoursite.com/tags/less/index.html">
 <meta property="og:site_name" content="Eastblue">
-<meta property="og:description" content="React无疑是目前最流行的前端View库之一。在业务开发中，开发者经常会因为网络请求时间点的选择而纠结，那么这篇文章一定会给你带来一些帮助。  本文所提到的网络请求主要是组件初始化请求，不包括触发式请求（比如点赞请求、评论请求等）。">
+<meta property="og:description" content="The bridge between users and data">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/02/23/React和Vue网络请求的时间点分析/componentDidMount.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/23/React和Vue网络请求的时间点分析/decision.jpg">
-<meta property="og:updated_time" content="2019-02-23T08:47:32.961Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React网络请求的时间点分析">
-<meta name="twitter:description" content="React无疑是目前最流行的前端View库之一。在业务开发中，开发者经常会因为网络请求时间点的选择而纠结，那么这篇文章一定会给你带来一些帮助。  本文所提到的网络请求主要是组件初始化请求，不包括触发式请求（比如点赞请求、评论请求等）。">
-<meta name="twitter:image" content="http://yoursite.com/2019/02/23/React和Vue网络请求的时间点分析/componentDidMount.png">
+<meta name="twitter:title" content="Eastblue">
+<meta name="twitter:description" content="The bridge between users and data">
 
 
 
@@ -93,7 +88,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo_80.png" alt="React网络请求的时间点分析" height="28">
+                <img src="/images/logo_80.png" alt="Eastblue" height="28">
             
             </a>
         </div>
@@ -139,28 +134,39 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">less</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
     
     <div class="card-image">
-        <span class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnails/react-lifecycle-requert-banner.png" alt="React网络请求的时间点分析">
-        </span>
+        <a href="/2019/02/24/在less中遍历数组元素/" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnails/less-for-banner.jpg" alt="在less中遍历数组元素">
+        </a>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-02-23T03:08:41.000Z">2019-02-23</time>
+                <time class="level-item has-text-grey" datetime="2019-02-24T13:03:49.000Z">2019-02-24</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/React/">React</a>
+                <a class="has-link-grey -link" href="/categories/CSS/">CSS</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    7 分钟 读完 (大约 980 个字)
+                    1 分钟 读完 (大约 127 个字)
                 </span>
                 
                 
@@ -169,125 +175,35 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                React网络请求的时间点分析
+                <a class="has-link-black-ter" href="/2019/02/24/在less中遍历数组元素/">在less中遍历数组元素</a>
             
         </h1>
         <div class="content">
-            <p><code>React</code>无疑是目前最流行的前端View库之一。在业务开发中，开发者经常会因为网络请求时间点的选择而纠结，那么这篇文章一定会给你带来一些帮助。</p>
-<blockquote>
-<p>本文所提到的网络请求主要是组件初始化请求，不包括触发式请求（比如点赞请求、评论请求等）。<br><a id="more"></a><br>首先我们需要明确的是可进行网络请求的React类组件生命周期：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">constructor()</span><br><span class="line">componentWillMount()</span><br><span class="line">render()</span><br><span class="line">componentDidMount()</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p>React在官方文档中提到，<code>componentDidMount</code>是比较适合进行网络请求的地方：<br><img src="/2019/02/23/React和Vue网络请求的时间点分析/componentDidMount.png" alt="componentDidMount"><br>大多数情况下，在didMount中进行网络请求确实比较稳妥，不太容易出现问题。但在实际开发中，可能会由于需求的不同而存在更多的请求节点选择。</p>
-<hr>
-<ul>
-<li><h4 id="同步网络请求"><a href="#同步网络请求" class="headerlink" title="同步网络请求"></a>同步网络请求</h4>同步的请求很少出现。这类请求最好在constructor和willMount阶段进行，因为同步请求会<code>阻塞React组件的渲染</code>及<code>浏览器事件</code>。<br>在组件渲染完毕，会调用didMount方法。如果在这个时间发送同步请求，务必会阻塞用户和页面的交互，造成页面假死的现象。<br>而在render之前，constructor和willMount均未渲染出页面，此时进行同步请求也只会使用户觉得组件或页面正在加载中。<br><br></li>
-<li><h4 id="异步网络请求"><a href="#异步网络请求" class="headerlink" title="异步网络请求"></a>异步网络请求</h4>异步网络请求是在开发中最常见的，它并不会阻塞组件的渲染。将这类请求放在constructor和willMount中<code>效率会更高</code>。<br>异步请求在取得response后通常会使用setState来触发render。didMount调用时实际上已经render过一次，如果在didMount中请求数据，<code>至少会经历两次render</code>（假设请求成功）。<br>setState实际上是将更新的状态放进了组件的__pendingStateQueue<code>队列</code>。<br>速度足够快的情况下，在constructor和willMount中的请求能够在第一次render前进行setState，此时setState并不会触发渲染，而是会在组件进行第一次render的时候统一渲染，实际只进行了<code>一次render</code>。<br>如果没有在第一次render前获取到response，最多也只会和didMount中请求一样的效果，进行两次渲染。<br>综上，将异步请求放在constructor和willMount中会显得更加的高效。<blockquote>
-<p>在construcor中发出的异步请求（microTask）如果足够快，会在组件没有mounted前调用setState，这个时候是不成功的，必须直接使用this.state = {} 的形式设置state，这需要增加额外的判断。</p>
-</blockquote>
-</li>
-</ul>
-<p><br></p>
-<ul>
-<li><h4 id="不涉及UI渲染的网络请求"><a href="#不涉及UI渲染的网络请求" class="headerlink" title="不涉及UI渲染的网络请求"></a>不涉及UI渲染的网络请求</h4>我们一般不依赖这类请求的response，只需要强调请求的发送。所以比较适合在constructor阶段完成。<br><br></li>
-<li><h4 id="SSR（服务端渲染）"><a href="#SSR（服务端渲染）" class="headerlink" title="SSR（服务端渲染）"></a>SSR（服务端渲染）</h4>如果网站考虑SSR的话，那么网络请求要尽可能的放到didMount中，因为didMount在SSR的过程中并<code>不会被执行</code>，且SSR生成HTML的过程中也不需要执行网络请求（没有意义）。<br><br></li>
-<li><h4 id="Fiber-reconciler"><a href="#Fiber-reconciler" class="headerlink" title="Fiber reconciler"></a>Fiber reconciler</h4>Fiber是React16所采用的协调算法，可以通过<a href="http://www.ayqy.net/blog/dive-into-react-fiber/" target="_blank" rel="noopener">这篇文章</a>深入了解。<br>使用Fiber后，组件render前的生命周期方法可能会被打断，也就意味这这些方法可能会被<code>多次执行</code>。因此，在React16后，初始网络请求都要尽量在<code>didMount</code>中执行。</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><center><img src="/2019/02/23/React和Vue网络请求的时间点分析/decision.jpg" alt="React网络请求时间点的选择"></center>
+            <p>在Less中并没有对数组遍历的<code>原生支持</code>，我们可以通过mixin<code>递归</code>的方式来实现遍历。</p>
+<h2 id="1、定义数组元素"><a href="#1、定义数组元素" class="headerlink" title="1、定义数组元素"></a>1、定义数组元素</h2><figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-variable">@colors:</span> red, green, blue, black;</span><br></pre></td></tr></table></figure>
+<h2 id="2、获取数组元素长度"><a href="#2、获取数组元素长度" class="headerlink" title="2、获取数组元素长度"></a>2、获取数组元素长度</h2><figure class="highlight less hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-variable">@length:</span> length(<span class="hljs-variable">@color</span>);</span><br></pre></td></tr></table></figure>
         </div>
         
-        <div class="level is-size-7 is-uppercase">
+        
+        <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/生命周期/">生命周期</a>, <a class="has-link-grey -link" href="/tags/网络请求/">网络请求</a>
+                <a class="button is-size-7 is-light" href="/2019/02/24/在less中遍历数组元素/#more">阅读更多</a>
                 </div>
             </div>
         </div>
         
         
-        
     </div>
 </div>
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
-        <div class="buttons is-centered">
-            
-                
-<a class="button is-info donate">
-    <span class="icon is-small">
-        <i class="fab fa-alipay"></i>
-    </span>
-    <span>支付宝</span>
-    <div class="qrcode"><img src="/images/alipay_qrcode.jpeg" alt="支付宝"></div>
-</a>
-
-                
-                
-<a class="button is-success donate">
-    <span class="icon is-small">
-        <i class="fab fa-weixin"></i>
-    </span>
-    <span>微信</span>
-    <div class="qrcode"><img src="/images/weichat_qrcode.jpeg" alt="微信"></div>
-</a>
-
-                
-        </div>
-    </div>
-</div>
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/02/24/在less中遍历数组元素/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">在less中遍历数组元素</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2018/08/18/从浏览器输入URL到页面加载完毕发生了什么/">
-                <span class="level-item">从浏览器输入URL到页面加载完毕发生了什么</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
 
 
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">评论</h3>
-        
-<script>
-    var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2019/02/23/React和Vue网络请求的时间点分析/';
-        this.page.identifier = '2019/02/23/React和Vue网络请求的时间点分析/';
-    };
-    (function() {
-        var d = document, s = d.createElement('script');  
-        s.src = '//' + 'EastblueOkay' + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-
-<div id="disqus_thread">
-    
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-    </div>
-</div>
 </div>
                 
 
@@ -1120,7 +1036,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo_80.png" alt="React网络请求的时间点分析" height="28">
+                    <img src="/images/logo_80.png" alt="Eastblue" height="28">
                 
                 </a>
                 <p class="is-size-7">
