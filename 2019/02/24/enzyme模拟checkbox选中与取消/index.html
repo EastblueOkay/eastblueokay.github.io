@@ -8,14 +8,14 @@
 
 
     <meta name="description" content="在涉及到checkbox表单元素的单测时，我们会直观的模拟input元素的click事件以触发元素值的改变。但在使用enzyme进行组件单测时却行不通。 正确的做法正确的做法是模拟input元素的change事件，传递想要的target.value。123456789101112import React from &apos;react&apos;import &amp;#123; mount &amp;#125; from &apos;en">
-<meta name="keywords" content="jest,enzyme">
+<meta name="keywords" content="React,jest,enzyme">
 <meta property="og:type" content="article">
 <meta property="og:title" content="enzyme模拟checkbox选中与取消">
 <meta property="og:url" content="http://yoursite.com/2019/02/24/enzyme模拟checkbox选中与取消/index.html">
 <meta property="og:site_name" content="Eastblue">
 <meta property="og:description" content="在涉及到checkbox表单元素的单测时，我们会直观的模拟input元素的click事件以触发元素值的改变。但在使用enzyme进行组件单测时却行不通。 正确的做法正确的做法是模拟input元素的change事件，传递想要的target.value。123456789101112import React from &apos;react&apos;import &amp;#123; mount &amp;#125; from &apos;en">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-24T13:44:08.732Z">
+<meta property="og:updated_time" content="2019-02-24T13:46:19.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="enzyme模拟checkbox选中与取消">
 <meta name="twitter:description" content="在涉及到checkbox表单元素的单测时，我们会直观的模拟input元素的click事件以触发元素值的改变。但在使用enzyme进行组件单测时却行不通。 正确的做法正确的做法是模拟input元素的change事件，传递想要的target.value。123456789101112import React from &apos;react&apos;import &amp;#123; mount &amp;#125; from &apos;en">
@@ -174,7 +174,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/enzyme/">enzyme</a>, <a class="has-link-grey -link" href="/tags/jest/">jest</a>
+                    <a class="has-link-grey -link" href="/tags/React/">React</a>, <a class="has-link-grey -link" href="/tags/enzyme/">enzyme</a>, <a class="has-link-grey -link" href="/tags/jest/">jest</a>
                 </div>
             </div>
         </div>
@@ -321,7 +321,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        13
+                        14
                     </p>
                 </div>
             </div>
@@ -471,7 +471,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Grid-Layout/" style="font-size: 10px;">Grid Layout</a> <a href="/tags/URL/" style="font-size: 10px;">URL</a> <a href="/tags/enzyme/" style="font-size: 10px;">enzyme</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/webpack-css/" style="font-size: 10px;">webpack css</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/生命周期/" style="font-size: 10px;">生命周期</a> <a href="/tags/网络请求/" style="font-size: 10px;">网络请求</a>
+        <a href="/tags/Grid-Layout/" style="font-size: 10px;">Grid Layout</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/URL/" style="font-size: 10px;">URL</a> <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/enzyme/" style="font-size: 10px;">enzyme</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/生命周期/" style="font-size: 10px;">生命周期</a> <a href="/tags/网络请求/" style="font-size: 10px;">网络请求</a>
     </div>
 </div>
 
@@ -702,9 +702,23 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/React/">
+                        <span class="tag">React</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/URL/">
                         <span class="tag">URL</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/css/">
+                        <span class="tag">css</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -746,14 +760,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/webpack/">
                         <span class="tag">webpack</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/webpack-css/">
-                        <span class="tag">webpack css</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1024,9 +1031,23 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/React/">
+                        <span class="tag">React</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/URL/">
                         <span class="tag">URL</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/css/">
+                        <span class="tag">css</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1068,14 +1089,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/webpack/">
                         <span class="tag">webpack</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/webpack-css/">
-                        <span class="tag">webpack css</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
