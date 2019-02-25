@@ -156,7 +156,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 分钟 读完 (大约 860 个字)
+                    6 分钟 读完 (大约 848 个字)
                 </span>
                 
                 
@@ -169,48 +169,18 @@
             
         </h1>
         <div class="content">
-            <p>React或Vue如今已经成为前端开发人员<code>必点的技能</code>。之前已经对<a href="(https://eastblueokay.github.io/2019/02/23/React%E5%92%8CVue%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E7%9A%84%E6%97%B6%E9%97%B4%E7%82%B9%E5%88%86%E6%9E%90/">React进行过分析</a>，今天便要从<code>源码的角度</code>来分析Vue网络请求的时间点。</p>
-<h2 id="1、Vue是一个函数，没有constructor"><a href="#1、Vue是一个函数，没有constructor" class="headerlink" title="1、Vue是一个函数，没有constructor"></a>1、Vue是一个函数，没有constructor</h2><p>Vue使用<code>单文件组件</code>的模式进行开发，<code>vue-loader</code>将<code>script</code>及<code>template</code>的内容加载后通过<code>vue-template-compiler</code>编译成options供Vue.extend()调用，最终通过<code>$mount</code>方法<code>挂载</code>到DOM。<br><code>Vue.extend(options)</code>生成的是一个Vue实例构造器，与Vue的区别是前者包含了传入的options。两者的实例化所做的操作是一样的，我们可以通过结构较为清晰的Vue来分析。<br><code>Vue</code> 被定义在了<code>src/core/instance/index.js</code>中：<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Vue</span> (<span class="hljs-params">options</span>) </span>&#123;</span><br><span class="line">  <span class="hljs-keyword">if</span> (process.env.NODE_ENV !== <span class="hljs-string">'production'</span> &amp;&amp;</span><br><span class="line">    !(<span class="hljs-keyword">this</span> <span class="hljs-keyword">instanceof</span> Vue)</span><br><span class="line">  ) &#123;</span><br><span class="line">    warn(<span class="hljs-string">'Vue is a constructor and should be called with the `new` keyword'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="hljs-keyword">this</span>._init(options)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><code>Vue</code>只是一个简单的函数，与React不同的是不能采用<code>ES6 class</code>的写法来表示一个组件。所以我们就不能在<code>constructor</code>中进行网络请求。而且函数只调用了<code>_init</code>方法，并没有给开发者进行<code>手动初始化</code>的机会。</p>
-<h2 id="2、new-Vue-发生了什么？"><a href="#2、new-Vue-发生了什么？" class="headerlink" title="2、new Vue 发生了什么？"></a>2、new Vue 发生了什么？</h2><p>我们深入<code>_init</code>方法：<br><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// ... 省略前部的数据校验、处理</span></span><br><span class="line">vm._self = vm</span><br><span class="line">initLifecycle(vm)</span><br><span class="line">initEvents(vm)</span><br><span class="line">initRender(vm)</span><br><span class="line">callHook(vm, <span class="hljs-string">'beforeCreate'</span>)</span><br><span class="line">initInjections(vm) <span class="hljs-comment">// resolve injections before data/props</span></span><br><span class="line">initState(vm)</span><br><span class="line">initProvide(vm) <span class="hljs-comment">// resolve provide after data/props</span></span><br><span class="line">callHook(vm, <span class="hljs-string">'created'</span>)</span><br><span class="line"><span class="hljs-keyword">if</span> (vm.$options.el) &#123;</span><br><span class="line">  vm.$mount(vm.$options.el)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Vue源码的可阅读性是非常高的，将不同的逻辑封装成不同的函数，一目了然，犹如插件一般自如。<br>从<code>_init</code>方法中可以明显的看到<code>beforeCreate</code>和<code>created</code>两个生命周期函数被传入callHook，顾名思义就是调用<code>options</code>中对应的方法。在$mount函数中会依次调用<code>beforeMount</code>和<code>mounted</code>。<br><code>_init</code>方法主要完成了初始化生命周期，初始化事件中心，初始化渲染，初始化 data、props、computed、watcher 等等。</p>
-<h2 id="3、beforeCreate-created-mounted"><a href="#3、beforeCreate-created-mounted" class="headerlink" title="3、beforeCreate/created/mounted"></a>3、beforeCreate/created/mounted</h2><p>初始化请求一般有两种：</p>
-<ul>
-<li>想要造成页面渲染的<code>响应类</code>请求</li>
-<li>不关心response的<code>单一</code>请求</li>
-</ul>
-<h4 id="响应类请求"><a href="#响应类请求" class="headerlink" title="响应类请求"></a>响应类请求</h4><p>这类请求在接收到response后需要设置this.data来触发页面渲染，所以前提条件是要保证response callback执行的时候<code>this.data存在</code>，否则设置将无效。<br>在<code>_init</code>中，第8行<code>initState</code>完成了data的<code>初始化</code>。所以请求必须要在其之后的<code>created</code>生命周期中发送。</p>
-<h4 id="单一请求"><a href="#单一请求" class="headerlink" title="单一请求"></a>单一请求</h4><p>这类请求原则上不需要读/写组件的任何数据，可以放在最早执行的<code>beforeCreate</code>中发送。如果请求<code>依赖于props</code>，则需要将请求移动到created，因为这个时候props才有值。</p>
-<h4 id="服务端渲染"><a href="#服务端渲染" class="headerlink" title="服务端渲染"></a>服务端渲染</h4><p>与React相同，Vue的SSR也不会进行组件的挂载操作，并不会执行beforeMount和mounted方法。所以如果网站考虑SSR的话，则需要尽量把请求放到mounted中，减少资源的浪费。</p>
-<h2 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h2><table>
-<thead>
-<tr>
-<th>场景</th>
-<th>最早生命周期参考</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>响应类请求</td>
-<td>created</td>
-</tr>
-<tr>
-<td>单一请求</td>
-<td>beforeCreate</td>
-</tr>
-<tr>
-<td>单一请求(读取props)</td>
-<td>created</td>
-</tr>
-<tr>
-<td>SSR</td>
-<td>mounted</td>
-</tr>
-</tbody>
-</table>
-
+            <p>React或Vue如今已经成为前端开发人员<code>必点的技能</code>。之前已经对<a href="/2019/02/23/React和Vue网络请求的时间点分析/" title="React进行过分析">React进行过分析</a>，今天便要从<code>源码的角度</code>来分析Vue网络请求的时间点。</p>
+<h2 id="1、Vue是一个函数，没有constructor"><a href="#1、Vue是一个函数，没有constructor" class="headerlink" title="1、Vue是一个函数，没有constructor"></a>1、Vue是一个函数，没有constructor</h2><p>Vue使用<code>单文件组件</code>的模式进行开发，<code>vue-loader</code>将<code>script</code>及<code>template</code>的内容加载后通过<code>vue-template-compiler</code>编译成options供Vue.extend()调用，最终通过<code>$mount</code>方法<code>挂载</code>到DOM。</p>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/02/25/源码角度分析Vue网络请求的时间点/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -453,7 +423,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Grid-Layout/" style="font-size: 10px;">Grid Layout</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/URL/" style="font-size: 10px;">URL</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/enzyme/" style="font-size: 10px;">enzyme</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/生命周期/" style="font-size: 20px;">生命周期</a> <a href="/tags/网络请求/" style="font-size: 20px;">网络请求</a>
+        <a href="/tags/Grid-Layout/" style="font-size: 10px;">Grid Layout</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/URL/" style="font-size: 10px;">URL</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/enzyme/" style="font-size: 10px;">enzyme</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/生命周期/" style="font-size: 20px;">生命周期</a> <a href="/tags/网络请求/" style="font-size: 20px;">网络请求</a>
     </div>
 </div>
 
@@ -700,7 +670,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Vue/">
                         <span class="tag">Vue</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1036,7 +1006,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Vue/">
                         <span class="tag">Vue</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
