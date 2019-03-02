@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Eastblue">
 <meta property="og:description" content="当父组件重新渲染的时候，会触发子组件componentWillReceiveProps和shouldComponentUpdate两个方法的执行。nextProps会以参数的形式传递给这两个方法，他们之间是否有什么区别与联系？ 123456789101112class Demo extends React.Component &amp;#123;    componentWillReceiveProps(">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-02T09:15:59.704Z">
+<meta property="og:updated_time" content="2019-03-02T09:21:30.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="willReceiveProps 和 shouldComponentUpdate">
 <meta name="twitter:description" content="当父组件重新渲染的时候，会触发子组件componentWillReceiveProps和shouldComponentUpdate两个方法的执行。nextProps会以参数的形式传递给这两个方法，他们之间是否有什么区别与联系？ 123456789101112class Demo extends React.Component &amp;#123;    componentWillReceiveProps(">
@@ -161,7 +161,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 140 个字)
+                    1 分钟 读完 (大约 133 个字)
                 </span>
                 
                 
@@ -182,7 +182,7 @@ var _hmt = _hmt || [];
 <li>render</li>
 </ol>
 <h2 id="执行时机"><a href="#执行时机" class="headerlink" title="执行时机"></a>执行时机</h2><ol>
-<li><code>componentWillReceiveProps</code>不关心返回值，一般在这里对比props按需调用setState直接进行<code>渲染</code></li>
+<li><code>componentWillReceiveProps</code>不关心返回值，一般在这里根据props来更新state</li>
 <li><code>shouldComponentUpdate</code>无论前者返回什么<code>都会被调用</code>，在这里判断是否调用render</li>
 </ol>
 

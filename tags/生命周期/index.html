@@ -170,7 +170,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 140 个字)
+                    1 分钟 读完 (大约 133 个字)
                 </span>
                 
                 
@@ -191,7 +191,7 @@ var _hmt = _hmt || [];
 <li>render</li>
 </ol>
 <h2 id="执行时机"><a href="#执行时机" class="headerlink" title="执行时机"></a>执行时机</h2><ol>
-<li><code>componentWillReceiveProps</code>不关心返回值，一般在这里对比props按需调用setState直接进行<code>渲染</code></li>
+<li><code>componentWillReceiveProps</code>不关心返回值，一般在这里根据props来更新state</li>
 <li><code>shouldComponentUpdate</code>无论前者返回什么<code>都会被调用</code>，在这里判断是否调用render</li>
 </ol>
 
