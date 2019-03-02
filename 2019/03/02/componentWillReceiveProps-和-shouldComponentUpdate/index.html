@@ -2,21 +2,23 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: 原型链 - Eastblue</title>
+<title>willReceiveProps 和 shouldComponentUpdate - Eastblue</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="The bridge between users and data">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Eastblue">
-<meta property="og:url" content="http://yoursite.com/tags/原型链/index.html">
+    <meta name="description" content="当父组件重新渲染的时候，会触发子组件componentWillReceiveProps和shouldComponentUpdate两个方法的执行。nextProps会以参数的形式传递给这两个方法，他们之间是否有什么区别与联系？ 123456789101112class Demo extends React.Component &amp;#123;    componentWillReceiveProps(">
+<meta name="keywords" content="生命周期,React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="willReceiveProps 和 shouldComponentUpdate">
+<meta property="og:url" content="http://yoursite.com/2019/03/02/componentWillReceiveProps-和-shouldComponentUpdate/index.html">
 <meta property="og:site_name" content="Eastblue">
-<meta property="og:description" content="The bridge between users and data">
+<meta property="og:description" content="当父组件重新渲染的时候，会触发子组件componentWillReceiveProps和shouldComponentUpdate两个方法的执行。nextProps会以参数的形式传递给这两个方法，他们之间是否有什么区别与联系？ 123456789101112class Demo extends React.Component &amp;#123;    componentWillReceiveProps(">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-02T09:15:59.704Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Eastblue">
-<meta name="twitter:description" content="The bridge between users and data">
+<meta name="twitter:title" content="willReceiveProps 和 shouldComponentUpdate">
+<meta name="twitter:description" content="当父组件重新渲染的时候，会触发子组件componentWillReceiveProps和shouldComponentUpdate两个方法的执行。nextProps会以参数的形式传递给这两个方法，他们之间是否有什么区别与联系？ 123456789101112class Demo extends React.Component &amp;#123;    componentWillReceiveProps(">
 
 
 
@@ -98,7 +100,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo_80.png" alt="Eastblue" height="28">
+                <img src="/images/logo_80.png" alt="willReceiveProps 和 shouldComponentUpdate" height="28">
             
             </a>
         </div>
@@ -144,39 +146,22 @@ var _hmt = _hmt || [];
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">原型链</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2018/06/25/JavaScript原型链继承和Class继承/" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnails/javascript-extend-proto-banner.png" alt="JavaScript原型链继承和Class继承">
-        </a>
-    </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-06-25T14:30:15.000Z">2018-06-25</time>
+                <time class="level-item has-text-grey" datetime="2019-03-02T08:53:28.000Z">2019-03-02</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/JavaScript/">JavaScript</a>
+                <a class="has-link-grey -link" href="/categories/React/">React</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 561 个字)
+                    1 分钟 读完 (大约 140 个字)
                 </span>
                 
                 
@@ -185,22 +170,33 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2018/06/25/JavaScript原型链继承和Class继承/">JavaScript原型链继承和Class继承</a>
+                willReceiveProps 和 shouldComponentUpdate
             
         </h1>
         <div class="content">
-            <p>在JavaScript中如果想要实现继承，都是要借助原型链特性。class是ES6新推出的关键字，但在JavaScript中并不存在类的概念，class关键字只是一种语法糖，其本质还是函数。</p>
-<center><img src="/2018/06/25/JavaScript原型链继承和Class继承/1.1.png" alt="class关键字"></center>
+            <p>当父组件重新渲染的时候，会触发子组件<code>componentWillReceiveProps</code>和<code>shouldComponentUpdate</code>两个方法的执行。<br><code>nextProps</code>会以参数的形式传递给这两个方法，他们之间是否有什么区别与联系？</p>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">    componentWillReceiveProps(nextProps) &#123;</span><br><span class="line">        <span class="hljs-comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">    shouldComponentUpdate(nextProps, nextState)&#123;</span><br><span class="line">        <span class="hljs-comment">//</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span></span><br><span class="line">    &#125; </span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h2><ol>
+<li>componentWillReceiveProps</li>
+<li>shouldComponentUpdate</li>
+<li>render</li>
+</ol>
+<h2 id="执行时机"><a href="#执行时机" class="headerlink" title="执行时机"></a>执行时机</h2><ol>
+<li><code>componentWillReceiveProps</code>不关心返回值，一般在这里对比props按需调用setState直接进行<code>渲染</code></li>
+<li><code>shouldComponentUpdate</code>无论前者返回什么<code>都会被调用</code>，在这里判断是否调用render</li>
+</ol>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/06/25/JavaScript原型链继承和Class继承/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/React/">React</a>, <a class="has-link-grey -link" href="/tags/生命周期/">生命周期</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -208,11 +204,76 @@ var _hmt = _hmt || [];
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay_qrcode.jpeg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/weichat_qrcode.jpeg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/02/25/源码角度分析Vue网络请求的时间点/">
+                <span class="level-item">源码角度分析 - Vue网络请求的时间点</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2019/03/02/componentWillReceiveProps-和-shouldComponentUpdate/';
+        this.page.identifier = '2019/03/02/componentWillReceiveProps-和-shouldComponentUpdate/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'EastblueOkay' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 
@@ -1085,7 +1146,7 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo_80.png" alt="Eastblue" height="28">
+                    <img src="/images/logo_80.png" alt="willReceiveProps 和 shouldComponentUpdate" height="28">
                 
                 </a>
                 <p class="is-size-7">

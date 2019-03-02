@@ -2,7 +2,7 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: vue - Eastblue</title>
+<title>标签: Vue - Eastblue</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -10,7 +10,7 @@
     <meta name="description" content="The bridge between users and data">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Eastblue">
-<meta property="og:url" content="http://yoursite.com/tags/vue/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/Vue/index.html">
 <meta property="og:site_name" content="Eastblue">
 <meta property="og:description" content="The bridge between users and data">
 <meta property="og:locale" content="zh-CN">
@@ -148,7 +148,7 @@ var _hmt = _hmt || [];
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">vue</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Vue</a></li>
         </ul>
         </nav>
     </div>
@@ -157,8 +157,8 @@ var _hmt = _hmt || [];
     <div class="card">
     
     <div class="card-image">
-        <a href="/2018/08/03/从零开始搭建Webpack-Vue项目/" class="image is-7by1">
-            <img class="thumbnail" src="/gallery/thumbnails/webpack-vue-cli-start-banner.png" alt="从零开始搭建Webpack+Vue项目">
+        <a href="/2019/02/25/源码角度分析Vue网络请求的时间点/" class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnails/vue-network-lifecycle-banner.png" alt="源码角度分析 - Vue网络请求的时间点">
         </a>
     </div>
     
@@ -166,7 +166,7 @@ var _hmt = _hmt || [];
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-08-02T19:03:11.000Z">2018-08-03</time>
+                <time class="level-item has-text-grey" datetime="2019-02-25T12:13:33.000Z">2019-02-25</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
@@ -176,7 +176,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1200 个字)
+                    6 分钟 读完 (大约 848 个字)
                 </span>
                 
                 
@@ -185,22 +185,67 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2018/08/03/从零开始搭建Webpack-Vue项目/">从零开始搭建Webpack+Vue项目</a>
+                <a class="has-link-black-ter" href="/2019/02/25/源码角度分析Vue网络请求的时间点/">源码角度分析 - Vue网络请求的时间点</a>
             
         </h1>
         <div class="content">
-            <p>在使用Vue开发时，我们大多数会使用官方的<code>vue-cli</code>，主要特点包括：</p>
-<ul>
-<li>基于webpack构建，带有合理的默认配置</li>
-<li>快速零配置原型开发</li>
-<li>包含丰富的官方插件集合<br>通过它我们可以快速开发一个完整的系统。本文就带领大家从零开始来搭建一个<code>最精简</code>、<code>可运行</code>、基于webpack3构建的Vue(2.x)项目。这能让我们了解到webpack和vue在我们日常开发中所处的地位，帮助我们学习或回顾webpack一些配置属性。</li></ul>
+            <p>React或Vue如今已经成为前端开发人员<code>必点的技能</code>。之前已经对<a href="/2019/02/23/React和Vue网络请求的时间点分析/" title="React进行过分析">React进行过分析</a>，今天便要从<code>源码的角度</code>来分析Vue网络请求的时间点。</p>
+<h2 id="1、Vue是一个函数，没有constructor"><a href="#1、Vue是一个函数，没有constructor" class="headerlink" title="1、Vue是一个函数，没有constructor"></a>1、Vue是一个函数，没有constructor</h2><p>Vue使用<code>单文件组件</code>的模式进行开发，<code>vue-loader</code>将<code>script</code>及<code>template</code>的内容加载后通过<code>vue-template-compiler</code>编译成options供Vue.extend()调用，最终通过<code>$mount</code>方法<code>挂载</code>到DOM。</p>
         </div>
         
         
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/08/03/从零开始搭建Webpack-Vue项目/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/2019/02/25/源码角度分析Vue网络请求的时间点/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-04-23T07:16:04.000Z">2018-04-23</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 459 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/04/23/将-vue-插件发布到-npm/">将 vue 插件发布到 npm</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="1、准备好-Vue-插件"><a href="#1、准备好-Vue-插件" class="headerlink" title="1、准备好 Vue 插件"></a>1、准备好 Vue 插件</h2><p>在发布 npm 之前，你需要按照<a href="https://vuejs.org/v2/guide/plugins.html#Writing-a-Plugin" target="_blank" rel="noopener">Vue插件开发手册</a>开发完成你的 Vue 插件。<br></p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2018/04/23/将-vue-插件发布到-npm/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -261,7 +306,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        13
+                        14
                     </p>
                 </div>
             </div>
@@ -347,7 +392,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">React</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Vue/">
@@ -385,7 +430,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Grid-Layout/" style="font-size: 10px;">Grid Layout</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/URL/" style="font-size: 10px;">URL</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/enzyme/" style="font-size: 10px;">enzyme</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/生命周期/" style="font-size: 20px;">生命周期</a> <a href="/tags/网络请求/" style="font-size: 20px;">网络请求</a>
+        <a href="/tags/Grid-Layout/" style="font-size: 10px;">Grid Layout</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/URL/" style="font-size: 10px;">URL</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/enzyme/" style="font-size: 10px;">enzyme</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/生命周期/" style="font-size: 20px;">生命周期</a> <a href="/tags/网络请求/" style="font-size: 15px;">网络请求</a>
     </div>
 </div>
 
@@ -399,6 +444,25 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/03/02/componentWillReceiveProps-和-shouldComponentUpdate/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="willReceiveProps 和 shouldComponentUpdate">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-02T08:53:28.000Z">2019-03-02</time></div>
+                    <a href="/2019/03/02/componentWillReceiveProps-和-shouldComponentUpdate/" class="has-link-black-ter is-size-6">willReceiveProps 和 shouldComponentUpdate</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -476,25 +540,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2018/08/18/从浏览器输入URL到页面加载完毕发生了什么/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnails/browser-url-start-end-banner.png" alt="从浏览器输入URL到页面加载完毕发生了什么">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-08-18T08:53:06.000Z">2018-08-18</time></div>
-                    <a href="/2018/08/18/从浏览器输入URL到页面加载完毕发生了什么/" class="has-link-black-ter is-size-6">从浏览器输入URL到页面加载完毕发生了什么</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Web/">Web</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -506,6 +551,17 @@ var _hmt = _hmt || [];
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/02/">
@@ -618,7 +674,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React/">
                         <span class="tag">React</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -702,7 +758,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/生命周期/">
                         <span class="tag">生命周期</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -738,6 +794,25 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
+            <a href="/2019/03/02/componentWillReceiveProps-和-shouldComponentUpdate/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="willReceiveProps 和 shouldComponentUpdate">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-02T08:53:28.000Z">2019-03-02</time></div>
+                    <a href="/2019/03/02/componentWillReceiveProps-和-shouldComponentUpdate/" class="has-link-black-ter is-size-6">willReceiveProps 和 shouldComponentUpdate</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/02/25/源码角度分析Vue网络请求的时间点/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/gallery/thumbnails/vue-network-lifecycle-banner.png" alt="源码角度分析 - Vue网络请求的时间点">
@@ -812,25 +887,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2018/08/18/从浏览器输入URL到页面加载完毕发生了什么/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnails/browser-url-start-end-banner.png" alt="从浏览器输入URL到页面加载完毕发生了什么">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-08-18T08:53:06.000Z">2018-08-18</time></div>
-                    <a href="/2018/08/18/从浏览器输入URL到页面加载完毕发生了什么/" class="has-link-black-ter is-size-6">从浏览器输入URL到页面加载完毕发生了什么</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Web/">Web</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -842,6 +898,17 @@ var _hmt = _hmt || [];
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/02/">
@@ -954,7 +1021,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React/">
                         <span class="tag">React</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1038,7 +1105,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/生命周期/">
                         <span class="tag">生命周期</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1147,92 +1214,6 @@ var _hmt = _hmt || [];
 <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    MathJax.Hub.Config({
-        'HTML-CSS': {
-            matchFontHeight: false
-        },
-        SVG: {
-            matchFontHeight: false
-        },
-        CommonHTML: {
-            matchFontHeight: false
-        },
-        tex2jax: {
-            inlineMath: [
-                ['$','$'],
-                ['\\(','\\)']
-            ]
-        }
-    });
-});
-</script>
-
-    
-    
-
-<a id="back-to-top" title="回到顶端" href="javascript:;">
-    <i class="fas fa-chevron-up"></i>
-</a>
-<script src="/js/back-to-top.js" defer></script>
-
-
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
-    <script src="/js/clipboard.js" defer></script>
-    
-
-    
-    
-    
-
-
-<script src="/js/main.js" defer></script>
-
-    
-    <div class="searchbox ins-search">
-    <div class="searchbox-container ins-search-container">
-        <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
-            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="searchbox-result-wrapper ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-    (function (window) {
-        var INSIGHT_CONFIG = {
-            TRANSLATION: {
-                POSTS: '文章',
-                PAGES: '页面',
-                CATEGORIES: '分类',
-                TAGS: '标签',
-                UNTITLED: '(无标题)',
-            },
-            CONTENT_URL: '/content.json',
-        };
-        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-    })(window);
-</script>
-<script src="/js/insight.js" defer></script>
-<link rel="stylesheet" href="/css/search.css">
-<link rel="stylesheet" href="/css/insight.css">
-    
-</body>
-</html>) {
     MathJax.Hub.Config({
         'HTML-CSS': {
             matchFontHeight: false

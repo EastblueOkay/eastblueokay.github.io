@@ -156,6 +156,61 @@ var _hmt = _hmt || [];
 
     <div class="card">
     
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-03-02T08:53:28.000Z">2019-03-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/React/">React</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 140 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/03/02/componentWillReceiveProps-和-shouldComponentUpdate/">willReceiveProps 和 shouldComponentUpdate</a>
+            
+        </h1>
+        <div class="content">
+            <p>当父组件重新渲染的时候，会触发子组件<code>componentWillReceiveProps</code>和<code>shouldComponentUpdate</code>两个方法的执行。<br><code>nextProps</code>会以参数的形式传递给这两个方法，他们之间是否有什么区别与联系？</p>
+<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">    componentWillReceiveProps(nextProps) &#123;</span><br><span class="line">        <span class="hljs-comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">    shouldComponentUpdate(nextProps, nextState)&#123;</span><br><span class="line">        <span class="hljs-comment">//</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span></span><br><span class="line">    &#125; </span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h2><ol>
+<li>componentWillReceiveProps</li>
+<li>shouldComponentUpdate</li>
+<li>render</li>
+</ol>
+<h2 id="执行时机"><a href="#执行时机" class="headerlink" title="执行时机"></a>执行时机</h2><ol>
+<li><code>componentWillReceiveProps</code>不关心返回值，一般在这里对比props按需调用setState直接进行<code>渲染</code></li>
+<li><code>shouldComponentUpdate</code>无论前者返回什么<code>都会被调用</code>，在这里判断是否调用render</li>
+</ol>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
     <div class="card-image">
         <a href="/2019/02/25/源码角度分析Vue网络请求的时间点/" class="image is-7by1">
             <img class="thumbnail" src="/gallery/thumbnails/vue-network-lifecycle-banner.png" alt="源码角度分析 - Vue网络请求的时间点">
@@ -319,7 +374,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        13
+                        14
                     </p>
                 </div>
             </div>
@@ -405,7 +460,7 @@ var _hmt = _hmt || [];
                 <span class="level-item">React</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Vue/">
@@ -443,7 +498,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Grid-Layout/" style="font-size: 10px;">Grid Layout</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/URL/" style="font-size: 10px;">URL</a> <a href="/tags/Vue/" style="font-size: 20px;">Vue</a> <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/enzyme/" style="font-size: 10px;">enzyme</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/生命周期/" style="font-size: 20px;">生命周期</a> <a href="/tags/网络请求/" style="font-size: 20px;">网络请求</a>
+        <a href="/tags/Grid-Layout/" style="font-size: 10px;">Grid Layout</a> <a href="/tags/React/" style="font-size: 20px;">React</a> <a href="/tags/URL/" style="font-size: 10px;">URL</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/enzyme/" style="font-size: 10px;">enzyme</a> <a href="/tags/jest/" style="font-size: 10px;">jest</a> <a href="/tags/less/" style="font-size: 10px;">less</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/作用域/" style="font-size: 10px;">作用域</a> <a href="/tags/原型链/" style="font-size: 10px;">原型链</a> <a href="/tags/生命周期/" style="font-size: 20px;">生命周期</a> <a href="/tags/网络请求/" style="font-size: 15px;">网络请求</a>
     </div>
 </div>
 
@@ -457,6 +512,25 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/03/02/componentWillReceiveProps-和-shouldComponentUpdate/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="willReceiveProps 和 shouldComponentUpdate">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-02T08:53:28.000Z">2019-03-02</time></div>
+                    <a href="/2019/03/02/componentWillReceiveProps-和-shouldComponentUpdate/" class="has-link-black-ter is-size-6">willReceiveProps 和 shouldComponentUpdate</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -534,25 +608,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2018/08/18/从浏览器输入URL到页面加载完毕发生了什么/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnails/browser-url-start-end-banner.png" alt="从浏览器输入URL到页面加载完毕发生了什么">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-08-18T08:53:06.000Z">2018-08-18</time></div>
-                    <a href="/2018/08/18/从浏览器输入URL到页面加载完毕发生了什么/" class="has-link-black-ter is-size-6">从浏览器输入URL到页面加载完毕发生了什么</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Web/">Web</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -564,6 +619,17 @@ var _hmt = _hmt || [];
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/02/">
@@ -676,7 +742,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React/">
                         <span class="tag">React</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -760,7 +826,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/生命周期/">
                         <span class="tag">生命周期</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -796,6 +862,25 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
+            <a href="/2019/03/02/componentWillReceiveProps-和-shouldComponentUpdate/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="willReceiveProps 和 shouldComponentUpdate">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-02T08:53:28.000Z">2019-03-02</time></div>
+                    <a href="/2019/03/02/componentWillReceiveProps-和-shouldComponentUpdate/" class="has-link-black-ter is-size-6">willReceiveProps 和 shouldComponentUpdate</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/React/">React</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/02/25/源码角度分析Vue网络请求的时间点/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/gallery/thumbnails/vue-network-lifecycle-banner.png" alt="源码角度分析 - Vue网络请求的时间点">
@@ -870,25 +955,6 @@ var _hmt = _hmt || [];
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2018/08/18/从浏览器输入URL到页面加载完毕发生了什么/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/gallery/thumbnails/browser-url-start-end-banner.png" alt="从浏览器输入URL到页面加载完毕发生了什么">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-08-18T08:53:06.000Z">2018-08-18</time></div>
-                    <a href="/2018/08/18/从浏览器输入URL到页面加载完毕发生了什么/" class="has-link-black-ter is-size-6">从浏览器输入URL到页面加载完毕发生了什么</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Web/">Web</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -900,6 +966,17 @@ var _hmt = _hmt || [];
             归档
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/02/">
@@ -1012,7 +1089,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/React/">
                         <span class="tag">React</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1096,7 +1173,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/生命周期/">
                         <span class="tag">生命周期</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
