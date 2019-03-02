@@ -170,7 +170,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 133 个字)
+                    1 分钟 读完 (大约 179 个字)
                 </span>
                 
                 
@@ -184,19 +184,16 @@ var _hmt = _hmt || [];
         </h1>
         <div class="content">
             <p>当父组件重新渲染的时候，会触发子组件<code>componentWillReceiveProps</code>和<code>shouldComponentUpdate</code>两个方法的执行。<br><code>nextProps</code>会以参数的形式传递给这两个方法，他们之间是否有什么区别与联系？</p>
-<figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>&#123;</span><br><span class="line">    componentWillReceiveProps(nextProps) &#123;</span><br><span class="line">        <span class="hljs-comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">    shouldComponentUpdate(nextProps, nextState)&#123;</span><br><span class="line">        <span class="hljs-comment">//</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span></span><br><span class="line">    &#125; </span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h2><ol>
-<li>componentWillReceiveProps</li>
-<li>shouldComponentUpdate</li>
-<li>render</li>
-</ol>
-<h2 id="执行时机"><a href="#执行时机" class="headerlink" title="执行时机"></a>执行时机</h2><ol>
-<li><code>componentWillReceiveProps</code>不关心返回值，一般在这里根据props来更新state</li>
-<li><code>shouldComponentUpdate</code>无论前者返回什么<code>都会被调用</code>，在这里判断是否调用render</li>
-</ol>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/03/02/componentWillReceiveProps-和-shouldComponentUpdate/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
