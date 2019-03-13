@@ -7,21 +7,21 @@
 
 
 
-    <meta name="description" content="Wave组件为antd中许多元素提供了点击扩散特效的支持，例如Button、Checkbox和Radio等。 特点 Wave本身是一个组件，将需要实现点击特效的元素通过props.children传入。 无侵入，使用伪元素执行特效，不会破坏原有的Dom层次结构。 扩散特效颜色跟随被点击元素边框自动改变。  主要实现1. bindAnimationEvent在componentDidMount后会">
+    <meta name="description" content="Wave组件为antd中许多元素提供了点击扩散特效的支持，例如Button、Checkbox和Radio等。">
 <meta name="keywords" content="wave,antd,react">
 <meta property="og:type" content="article">
 <meta property="og:title" content="「antd源码分析」Wave——元素点击扩散效果">
 <meta property="og:url" content="http://yoursite.com/2019/03/13/「antd源码分析」Wave——元素点击扩散效果/index.html">
 <meta property="og:site_name" content="Eastblue">
-<meta property="og:description" content="Wave组件为antd中许多元素提供了点击扩散特效的支持，例如Button、Checkbox和Radio等。 特点 Wave本身是一个组件，将需要实现点击特效的元素通过props.children传入。 无侵入，使用伪元素执行特效，不会破坏原有的Dom层次结构。 扩散特效颜色跟随被点击元素边框自动改变。  主要实现1. bindAnimationEvent在componentDidMount后会">
+<meta property="og:description" content="Wave组件为antd中许多元素提供了点击扩散特效的支持，例如Button、Checkbox和Radio等。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/03/13/「antd源码分析」Wave——元素点击扩散效果/antd-btn-wave.gif">
 <meta property="og:image" content="http://yoursite.com/2019/03/13/「antd源码分析」Wave——元素点击扩散效果/antd-checkbox-wave.gif">
 <meta property="og:image" content="http://yoursite.com/2019/03/13/「antd源码分析」Wave——元素点击扩散效果/antd-radio-wave.gif">
-<meta property="og:updated_time" content="2019-03-13T13:36:36.624Z">
+<meta property="og:updated_time" content="2019-03-13T13:56:38.553Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「antd源码分析」Wave——元素点击扩散效果">
-<meta name="twitter:description" content="Wave组件为antd中许多元素提供了点击扩散特效的支持，例如Button、Checkbox和Radio等。 特点 Wave本身是一个组件，将需要实现点击特效的元素通过props.children传入。 无侵入，使用伪元素执行特效，不会破坏原有的Dom层次结构。 扩散特效颜色跟随被点击元素边框自动改变。  主要实现1. bindAnimationEvent在componentDidMount后会">
+<meta name="twitter:description" content="Wave组件为antd中许多元素提供了点击扩散特效的支持，例如Button、Checkbox和Radio等。">
 <meta name="twitter:image" content="http://yoursite.com/2019/03/13/「antd源码分析」Wave——元素点击扩散效果/antd-btn-wave.gif">
 
 
@@ -165,7 +165,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    7 分钟 读完 (大约 1093 个字)
+                    7 分钟 读完 (大约 1094 个字)
                 </span>
                 
                 
@@ -178,7 +178,10 @@ var _hmt = _hmt || [];
             
         </h1>
         <div class="content">
-            <p><code>Wave</code>组件为antd中许多元素提供了<code>点击扩散</code>特效的支持，例如Button、Checkbox和Radio等。<br><img src="/2019/03/13/「antd源码分析」Wave——元素点击扩散效果/antd-btn-wave.gif" alt="Wave on Button"><br><img src="/2019/03/13/「antd源码分析」Wave——元素点击扩散效果/antd-checkbox-wave.gif" alt="Wave on Checkbox"><br><img src="/2019/03/13/「antd源码分析」Wave——元素点击扩散效果/antd-radio-wave.gif" alt="Wave on Radio"></p>
+            <p><code>Wave</code>组件为antd中许多元素提供了<code>点击扩散</code>特效的支持，例如Button、Checkbox和Radio等。  </p>
+<p><img src="/2019/03/13/「antd源码分析」Wave——元素点击扩散效果/antd-btn-wave.gif" alt="Wave on Button"></p>
+<a id="more"></a>
+<p><img src="/2019/03/13/「antd源码分析」Wave——元素点击扩散效果/antd-checkbox-wave.gif" alt="Wave on Checkbox"><br><img src="/2019/03/13/「antd源码分析」Wave——元素点击扩散效果/antd-radio-wave.gif" alt="Wave on Radio"></p>
 <h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><ul>
 <li><code>Wave</code>本身是一个组件，将需要实现点击特效的元素通过<code>props.children</code>传入。</li>
 <li><code>无侵入</code>，使用伪元素执行特效，不会破坏原有的Dom层次结构。</li>
